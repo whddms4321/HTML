@@ -152,3 +152,26 @@ __멀티미디어 태그__
 |:--:|:--|
 |hyper|
 
+
+
+
+## CSS
+
+style과 stylesheet  
+  
+  - style은 정해진 속성을 입력하여 웹페이즈를 꾸미는 것  
+  - stylesheet는 웹페이지에서 반복적으로 쓰는style을 모아 놓은 것  
+```
+ P { color : red;  }  
+```   
+ 선택자  속성  값  
+ 
+ 
+ 
+stylesheet 종류  
+
+  1. 내부 스타일 시트
+    - html문서 내부의 <style></style>에 스타일 정보를 저장하는 방법
+    
+    
+- 선택자
