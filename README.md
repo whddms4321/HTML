@@ -175,3 +175,105 @@ stylesheet 종류
     
     
 - 선택자
+
+__CSS 단위 구성__
+
+<table>
+  <tr>
+    <th>구분</th>
+    <th>단위</th>
+    <th>내용</th>
+  </tr>
+  <tr>
+    <td rowspan="3">상대 크기<td>
+    <td>
+      
+      
+      
+      
+  <table>
+    <tr>
+      <th>표현방법</th>
+      <th>내용</th>
+    <tr>
+    <tr>
+      <td>영문색 이름</td>
+      <td>영문으로 색 이름 작성<br>red,white,blue...</td>
+      <td>16진수 표현</td>
+      <td>rgb값을 기준으로 16진수로 작성<br></td>
+    
+    
+    
+ - font-family  
+    - 폰트의 글꼴을 설정해주는 속성
+    - 글꼴 이름1이 없으면 글꼴2,글꼴3으로 선택되어 설정
+    - 글꼴이 모두 없으면 브라우저 기본 글꼴로 적용
+
+    ```
+    기본형식
+    선택자 {
+      font-maily:글꼴1[, 글꼴2,글꼴3];
+    }
+    ```   
+
+ - font-size  
+    - 글자의 크기를 조절하는 속성
+    - 단위 : em,px,pt,ex   
+
+    & ex:현재 소문자 x의 배수의 크기를 설정
+
+    |속성 값|내용|
+    |:--:|:--:|
+    |normal|기본형태|
+    |bold|굵게 표시|
+    |bolder|더 굵게 표시|
+    |lighter|더 가늘게 표시|
+    |100~900|굵기의 정도를 숫자로 표시|
+
+ - font-variant  
+    - 영어를 작은 대문자로 표시해 주는 속성
+    ```
+    선택자 {
+      font-style:normal 또는 italic 또는 oblique;
+    }
+- font-style  
+  - 글자를 이텔릭체로 표시하는 속성
+  ```
+  선택자 {
+    font-style  
+    
+텍스트 스타일
+  
+  color 
+    - 글자색을 하는 속성
+    
+  text-decoration
+  
+    - 글자에 밑줄을 긋거나, 취소선을 긋거나, 윗선을 긋거나 밑줄을 표시하지 않는 속성
+    
+  ```
+  선택자 {
+    text-decoration: 속성값;
+  }
+  ```
+  
+  text-shadow   
+    - 텍스트에 그림자 효과를 주는 속성
+    
+  ```
+  선택자 {
+    text-shadow: none 또는 (가로 또는 새로번짐 색상);
+  }
+  ```   
+  
+  white-space  
+    - 공백을 리해 주는 속성   
+  
+  text-align  
+    - 
+    
+  text-overflow
+    - 영역을 벗어나는 텍스트 표시 속성
+  
+  
+  
