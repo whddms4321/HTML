@@ -75,7 +75,7 @@ HTML 태그
   - 헤더 내부에 사용하는 태그로 메타 데이터로 html문서가 가지고 있는 유용한 정보를     담아 두는 곳, 문서 정보를 검색엔진에 전달  
   - 작성법 <meta name/http-equiv:"속성명" content="속성내용">
   
-# <meta ~>  
+# meta 
 
   속성
   - http-equiv : meta 요소에 정의 된 된 명령을 먼저 실행 후 후 페이지를 로딩 문서의     초기정보를 나타냄
@@ -715,7 +715,7 @@ __CSS 단위 구성__
   
   
   [HTML](#HTML)
-  [<meta ~>](#<meta ~>)
+  [meta](#meta)
   [<script></script>](#<script></script>)
   [<link>](#<link>)
   [영역 태그](#영역태그)
