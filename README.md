@@ -108,7 +108,7 @@ HTML 태그
 <title>이름 </title>
 ```  
   
-# <script></script>
+# SCRIPT
   - 페이지에서 스크립트를 사용하기 위해 사용
   - head와 body 두 곳에서 사용 가능  
   
@@ -132,7 +132,7 @@ alert(“ 스크립트 테스트”);
 |charset|외부 스크립트 자원의 문자를 인코딩|
 ```  
 
-# <link>
+# LINK
   - 문서를 외부 문서와 연결하기 위해 사용
   → CSS 파일이나 웹 웹 폰트 사용할 때 때 주로 연결
 ```  
@@ -714,9 +714,9 @@ __CSS 단위 구성__
     - 영역을 벗어나는 텍스트 표시 속성
   
   
-  [HTML](#HTML)
-  [meta](#meta)
-  [<script></script>](#<script></script>)
-  [<link>](#<link>)
-  [영역 태그](#영역태그)
+  [HTML](#HTML)   
+  [META](#meta)   
+  [SCRIPT](#SCRIPT)   
+  [LINK](#LINK)   
+  [영역 태그](#영역 태그)   
   [멀티미디어 태그](#멀티미디어 태그)
