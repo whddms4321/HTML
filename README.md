@@ -1265,10 +1265,10 @@ option:selected  -select 태그 중 option 태그 중 선택된 객체
 요소:nth-child(수식) : 수식에 위치하는 객체 선택
 요소:not(선택자) : 선택자와 일치하지 않는 객체
 
-  [HTML](#HTML)   
+  [1.HTML](#HTML)   
   [META](#meta)   
   [SCRIPT](#SCRIPT)   
   [LINK](#LINK)   
   [영역 태그](#영역-태그)   
-  innerHTML > html
   [멀티미디어 태그](#멀티미디  어-태그)
+  [4.jQuery](#jQuery)
