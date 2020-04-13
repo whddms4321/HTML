@@ -1328,8 +1328,9 @@ __jQuery Traversing__
     |$('선택자').is(인자)|선택된 요소의 범위내에 인자와 동일한 요소가 있는지 찾아서 있으면 true,없으면 false 리턴|
     
     
+<details> 
+  <summery># jQuery 지원하는 것들  </summery>
   
-# jQuery 지원하는 것들  
   ```
   *:모든 DOM 엘리먼트
   h,p: 태그선택자
@@ -1349,7 +1350,8 @@ __jQuery Traversing__
   요소:lt(n) - n번째 미만에 위치하는 객체
   요소:nth-child(수식) : 수식에 위치하는 객체 선택
   요소:not(선택자) : 선택자와 일치하지 않는 객체  
-  
+
+</details>
 
   [1.HTML](#HTML)   
     - [META](#meta)   
