@@ -598,27 +598,138 @@ search / url / email / tel
 
 # css
 
-__style과 stylesheet  __
+__style과 stylesheet__
   
   - style은 정해진 속성을 입력하여 웹페이즈를 꾸미는 것  
   - stylesheet는 웹페이지에서 반복적으로 쓰는style을 모아 놓은 것  
   
 ```
- P { color : red;  } 
- 선택자  속성  값  
+P { color : red;  } 
+선택자  속성  값  
 ```   
- 
- 
- 
  
 __stylesheet 종류  __
 
   1. 내부 스타일 시트
+  
     - html문서 내부의 <style></style>에 스타일 정보를 저장하는 방법
     
-    
-- 선택자
+  ```
+  <style>
+    p { color :red; }
+  </style>
+  ```  
+  
+  2. 외부 스타일 시트  
+  
+    - 외부에 css 파일을 작성하고 <link>태그를 이용하여 읽어와서 스타일 적용  
+     
+   ```
+   <link href="css파일 경로" rel="stylesheet" type="text/css">
+   ```  
+   
+ 3. 인라인 스타일 시트  
+ 
+   - 태그 내부에 스타일 정보를 지정하는 방법 
+   
+ ```
+ <p style="color:red">test</p>
+ ```
+ 
+ 
+# css 선택자
 
+__선택자__
+
+  - html문서 내부에서 스타일을 적용하기 위한 요소를 선택하는 것
+  - html문서를 꾸미기 위해서는 각 요소별로 스타일을 적용하기 위해 선택자를    이용하여 요소를 선택
+  
+```
+h1{
+  color: red;
+}
+
+ul>li:first-child{
+  color: red;
+}
+
+__선택자의 종류__
+
+|구분 |내용|
+|:--:|:--:|
+|전체 선택자 | * |
+|태그 선택자 |태그이름(h1, p, li 등등)|
+|아이디 선택자| # 아이디명|
+|클래스 선택자| . 클래스명|
+|후손 선택자| 선택자 선택자|
+|자손 선택자| 선택자 > 선택자|
+
+<table>
+  <tr>
+    <td rowspan="3">속성선택자</td>
+    <td> 선택자[ 속성= 값] / 선택자[ 속성~= 값] </td>
+  </tr>
+  <tr>
+    <td>선택자[ 속성|= 값] / 선택자[ 속성^= 값</td>
+  </tr>
+  <tr>
+    <td>선택자[ 속성$= 값] / 선택자[ 속성*= 값]</tr>
+  </tr>
+  <tr>
+    <td>동위선택자 </td>
+    <td>선택자 + 선택자 / 선택자 ~ 선택자</td>
+  </tr>
+  <tr>
+    <td rowspan="4>구조 선택자</td>
+    <td> 선택자:first-child / 선택자:last-child</td>
+  </tr>
+  <tr>
+    <td>선택자:nth-child( 수열) / 선택자:nth-last-child( 수열) </td>
+  </tr>
+  <tr>
+    <td> 선택자:first-of-type / 선택자:last-of-type</td>
+  </tr>
+  <tr>
+    <td>선택자:nth-of-type( 수열) / 선택자:nth-last-of-type( 수열)</td>
+  </tr>
+  <tr>
+    <td> 반응 선택자 </td>
+    <td> 선택자:active / 선택자:hover </td>
+  </tr>
+  <tr>
+    <td> 상태 선택자 </td>
+    <td> :checked / :focus</td>
+  </tr>
+  <tr>
+    <td>속성선택자 </td>
+    <td>:enabled / :disbled </td>
+  </tr>
+  <tr>
+    <td> 링크 선택자 </td>
+    <td> :link / :visited </td>
+  </tr>
+  <tr>
+    <td rowspan="2">문자 선택자</td>
+        <td> ::first-letter / ::first-line </td>
+  </tr>
+  <tr>
+    <td>:after / ::before / ::selection</td>
+  </tr>
+  <tr>
+    <td> 부정 선택자 </td>
+    <td> 선택자:not(선택자) </td>
+  </tr>
+  <tr>
+    <td> 전체 선택자 </td>
+    <td> *{ 설정내용;}</td> 
+</table>
+
+태그 선택자
+- 특정 태그에 적용되는 스타일
+기본 형식
+태그명 { 설정내용; }
+- 여러 개의 태그에 동시에 적용하려고 하는 경우 ‘,’( 콤마)로 로 구별
+예 예 : p,a,h1{ 설정내용;}
 __CSS 단위 구성__
 
 <table>
