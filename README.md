@@ -2570,6 +2570,50 @@ __effect__
   4. animate()
     - 현재 css 
 
+# jsp
+
+
+	jsp
+	<% for(int i=0;i<10;i++){ %>
+	.jsp > _jsp.java > _jsp.class > webconotainer 
+	
+	로 3단계로 자동으로 변환되며 처리됨
+  
+JSP Element 표기법
+
+Scriptlet tag
+Expression tag
+
+
+<%@ include %>
+
+
+Scriptlet tag
+
+  - jspservece 메소드의 로컬 변수와 코드를 작성할 때 사용
+  
+  
+Expression tag
+
+  - 자바의 객체를 출력 하고 싶을 때 사용 ;사용 안함
+  
+내부 태그
+
+page 하나의 jsp
+request 
+session 브라우저 단위로 저장
+spplivsyion 하느의 웹 어플과 관련된 영역
+
+
+
+
+
+
+
+
+
+
+
 
 ---
 
