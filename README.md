@@ -2616,17 +2616,230 @@ $('선택자').animate({
 }, [시간], [linear|swing], [함수]);
 ```
 
+---
 
-# jsp
+
+# jsp servlet
+
+
 
 # 기본개요
 
+---
 
-	jsp
-	<% for(int i=0;i<10;i++){ %>
-	.jsp > _jsp.java > _jsp.class > webconotainer 
-	
-	로 3단계로 자동으로 변환되며 처리됨
+# servlet
+
+__정의__
+
+  - Servlet + Applet의 합성어 
+  - JAVA 언어를 이용하여 사용자의 요청을 받아 처리하고 그 결과를 다시 사용자에게 전송하는 역할의 Class파일   
+  - 웹에서 동적인 페이지를 JAVA로 구현한 서버측 프로그램
+ 
+ 
+__Servlet 설계 규약__
+
+  -  모든 서블릿은 javax.servlet.Servlet 인터페이스를 상속받아 구현한다. 
+  -  서블릿을 구현 시 Servlet 인터페이스와 ServletConfig 인터페이스를 javax.servlet.GenericServlet에구현한다.     
+  -  HTTP 프로토콜을사용하는서블릿은 javax.servlet.http.HttpServlet 클래스를 상속받는데 HttpServlet클래스는         javax.servletGenericServlet을 상속하여 구현된 클래스다. 
+  - 서블릿의 Exception을 처리하기 위해서는 javax.servlet.ServletException을 상속받아야 한다.  
+  
+ <img ServletCapture1>
+ 
+ _배포 서줄자(Deployment Descriptor)__
+ 
+  - 어플리케이션에대한 전체설정 정보를 가지고있는 파일로이 정보를가지고      웹 컨테이너가서블릿을구동 
+  - xml파일로태그로이루어져있음 
+  - 어플리케이션폴더의 WEB-INF폴더에 web.xml 파일   
+  
+  설정정보
+  
+    - Servlet 정의 / Servlet 초기화파라미터 
+    - Session 설정 파라미터 
+    - Servlet/jsp 매핑 / MIME type 매핑 
+    - 보안설정 - Welcome file list 설정 
+    - 에러페이지, 리소스, 환경변수설정
+    
+__web.xml 파일 주요 태그__
+
+
+|태그 |설명|
+|:--:|:--:|
+|<web-app> |루트속성, 문법식별자 및 버전의 정보를 속성값으로 설정| 
+|<context-param> |웹 어플리케이션에서 공유하기 위한 파라미터 설정 |
+|<mime-mapping> |특정 파일 다운로드시 파일이 깨지는 현상을 방지하기 위한 설정 |
+|<servlet>    <servlet-class>    <servlet-mapping>    |서블릿 매핑 |
+|<welcome-file-list> |시작페이지 설정 |
+|<filter> | 필터정보 등록 | 
+|<error-page> | 에러발생시 안내페이지 설정|
+
+
+__서블릿 매핑__
+
+  - client가 servlet에 접근할때 원본 클래스명이아닌다른명칭으로접근시 사용 접근명칭과클래스명을매핑해주는것
+  - web.xml을이용하는방법 web.xml에태그를이용하여매핑정보를등록
+  - @annotation을이용하는방법 해당 서블릿클래스상단에 @annotation을 이용하여매핑정보등록 
+  
+  web.xml을 이용한 방법
+  ```
+  <servlet>
+  <servlet-name>mapping 명칭</servlet-name> <servlet-class>실제클래스명칭 
+  </servlet-class>
+  </servlet> 
+  <servlet-mapping> <servlet-name>mapping 명칭</servlet-name> 
+  <url-pattern>사용자접근 명칭</url-pattern>
+  </servlet- mapping>
+  ```
+ 
+  @annotation을 이용한 방식
+  ```
+  @web-servlet(“매핑명칭”) 
+  public class 서블릿명칭 extends HttpServlet{
+  Servlet 클래스내용
+  }
+  ```
+  
+  server.xml
+  
+  - WAS서버에 대한설정을변경할수 있는파일
+  
+  설정정보
+  
+  - Context Path 설정(서버내 애플리케이션설정) 
+  - 어플리케이션포트 설정 
+  - default 접속 경로 설정 
+  - 특정 이벤트설정
+  
+__Context Path__
+
+  - 어플리케이션에접근하는경로 
+  - 어플리케이션의 root 경로(최상위경로) 
+  - 하나의 WAS에 여러프로젝트를 이용하여 다양한 어플리케이션을 사용이 가능한데 이를 구별해주는 역할
+  
+  접속방법
+
+  http://서버아이피:[포트번호]/[Context Path]/Servlet 매핑값
+  
+    - 포트번호 80을 사용하는경우 포트번호생략가능(그 외 포트는포트번호입력) 
+    - 사용하는어플리케이션이 1개 인 경우 Context Path또한생략 가능하게설정 가능
+
+<img ServletCapture2>
+
+
+# 사용자 데이터 전송 방식   
+
+  get 방식   
+    - URL창 “?”뒤에 데이터를입력하는방법(쿼리스트링)으로 전송     
+  전송할데이터가여러 개인 경우 &를 이용하여 여러 개 전송 데이터검색에 많이 사용되며, 데이터크기에     
+  한계가있으며, 보안에취약    
+  post   
+    - 방식 HTTP 헤더의내용으로보내는방식으로데이터크기에제한이없고, 보안 이 뛰어남    
+
+  ※ Servlet이 두 방식 중 하나로전달 받으면 해당하는 메소드를 호출    
+  html의 <form>태그에서 method속성을 이용하여 전송 방법 결정 : 명시하지않으면 get  
+  
+  doGet()   
+    - client에서데이터를 get방식으로전송하게되면호출되는메소드   
+  doPost()   
+    - client에서데이터를 post방식으로전송하게되면 호출되는메소드   
+    
+  ※ ServletException을 처리해야함     
+  
+__HttpServletRequest(interface)__
+
+  - Http Servlets을 위한 요청정보(request information)를 제공 
+  - 인터페이스구현은 컨테이너가 설정하며, 메소드만사용 
+  - javax.servlet.ServletRequest를 상속
+  
+|메소드 |설명|
+|:--:|:--:|
+|getParameter(String)|client가 보내준 값이 저장된 명칭이 매개변수와 같은 명 칭에 저장된 값을 불러오는 메소드| 
+|getParameterNames() |client가 보내준 값을 저장한 명칭을 불러오는 메소드|
+|getParameterValues(String)|client가 보내준 값이 여러 개일 경우 그 값을 배열로 불러 오는 메소드 |
+|getParameterMap() |clien가 보내준 값 전체를 Map방식으로 불러오는 메소드 |
+|setAttribute(String,Object)|request 객체에 전달하고 싶은 값을 String 이름으로 Object객체로 저장하는 메소드 |
+|getAttribute(String) |매개변수와 동일한 객체 속성 값을 불러오는 메소드 |
+|removeAttribute(String) | request 객체에 저장되어 매개변수와 동일한 속성값을 삭제하는 메소드 |
+|setCharacterEncoding(String) | 전송 받은 request 객체의 값들의 CharacterSet을 설정해 주는 메소드 |
+|getRequestDispatcher(String) | 컨테이너내에서 request,response 객체를 전송하여 처리 할 컴포넌트(jsp파일 등)를 불러오는 메소드로      forward() 메소드와 같이 사용 |
+
+
+__HttpServletResponse(interface)__
+
+  - 요청에 대한 처리결과를 작성하기위해 사용하는 객체 
+  - 인터페이스구현은컨테이너가설정하며, 메소드만사용 
+  - javax.servlet.ServletResponse를 상속   
+  
+|메소드 |설명 |
+|setContentType(String) |응답으로 작성하는 페이지의 MIME type을 정하는 메소드 |
+|setCharacterEncoding(String) |응답하는 데이터의 CharacterSet을지정해주는 메소드 |
+|getWriter() | 문자를 페이지에 전송하기 위한 Stream을 가져오는 메소드 |
+|getOutputStream() | byte 단위로 페이지에 전송을 위한 Stream을 가져오는 메소드 |
+|sendRedirect(String) |client가 매개변수의 페이지를 다시 서버에 요청하게 하는 메소드 |
+
+
+# jsp
+
+  - 동적인 웹 페이지를 java언어를 이용하여 html,xml 기반으로 작성할 수 있는 기술
+  - Servlet은 수정 시 재 컴파일(서버재시작)을 해야하지만 jsp는     동적으로 컴파일 하기 때문에 재컴파일 없이 유연하게 작업 가능
+
+<img ServletCapture3>
+
+ __JSP 특징__
+ 
+  - JSP 파일이변경되지않는다면‘.jsp’ 파일에대한컴파일은다시 일어나지 않는다.
+  - JSP 파일이변경될때마다, Web Container는 translation, compile, load, initialization 과정을수행
+  - JSP 파일의배포 환경(위치)은 HTML과 동일
+  
+__JSP Element 표기 법__
+
+|종류 |표기법 |
+|:--:|:--:|
+|Comments tag |<%-- 주석내용 --%> |
+|Directive tag| <%@ 지시자 %> |
+|Declaration tag |<%! 선언문 %> |
+|Scriptlet tag |<% 코드 %> |
+|Expression tag |<%= 표현식 %> |
+
+
+__Comments tag__
+
+```
+1. HTML 주석 <!-- HTML주석 --> 
+2. JSP 주석 <%-- JSP 주석 --> 
+3. Java 주석 //, /*~*/
+```
+
+__Directive tag__
+
+  - JSP 페이지전체에 영향을 미치는 정보를 기술할때 사용 
+  <%@ 지시자속성=“값” %> 
+  - 지시자종류 
+    1. <%@ page import=“java.io.*” %>    
+      - jsp 페이지에대한 설정정보를컨테이너에알려주는지시자 
+      - 여러개 사용가능하지만 import를 제외하고는 한페이지당 1개만선언 
+    2. <%@ include file=“header.html” %> 
+      - 페이지내부에다른 jsp, html 페이지를 불러오는 지시자 
+    3. <%@ taglib url=“경로” prefix=“a” %> 
+      - jsp 내부에서 EL, Action Tag Library, JSTL를 사용할때 사용
+      
+__Declaration tag__
+ 
+  - Servlet 클래스의 멤버변수/메소드에 해당하는코드를 작성할때 사용
+  
+```  
+<%! public static final String PI = 3.14; %> 
+<%! private int count; %>
+<%! public String test()
+  { return “testName”; } 
+%>     
+```
+
+
+
+
+<% for(int i=0;i<10;i++){ %>
+.jsp > _jsp.java > _jsp.class > webconotainer 
+로 3단계로 자동으로 변환되며 처리됨
   
 JSP Element 표기법
 
@@ -2652,12 +2865,6 @@ page 하나의 jsp
 request 
 session 브라우저 단위로 저장
 spplivsyion 하느의 웹 어플과 관련된 영역
-
-
-
-
-
-
 
 
 ---
@@ -2696,10 +2903,13 @@ spplivsyion 하느의 웹 어플과 관련된 영역
       
       
 [4.jQuery](#jquery)       
-	- [객체탐색](#객체탐색)   
-	- [jQuery지원기능](#jquery-지원하는-것들)    
-	- [객체조작](#객체-조작)    
-	- [이벤트](#이벤트)   
+  - [객체탐색](#객체탐색)   
+  - [jQuery지원기능](#jquery-지원하는-것들)    
+  - [객체조작](#객체-조작)    
+  - [이벤트](#이벤트)    
+	
+[5.JSP/Servlet](#jsp-servlet)    
+   
 
 [맨위로](#맨위로)
  
