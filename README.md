@@ -319,7 +319,7 @@ html5의 의 페이지 구조
   
   - **최근 벡터 이미지인 SVG확장자의 활용빈도도 높아지고 있다.**  
   
- - http://maschek.hu/imagemap/imgmap/ 수업용 사이트
+
  
 <map></map>, <area>
   - 이미지를 구역 별로 나누어 링크를 걸어주는 태그
@@ -2643,7 +2643,7 @@ __Servlet 설계 규약__
   -  HTTP 프로토콜을사용하는서블릿은 javax.servlet.http.HttpServlet 클래스를 상속받는데 HttpServlet클래스는         javax.servletGenericServlet을 상속하여 구현된 클래스다. 
   - 서블릿의 Exception을 처리하기 위해서는 javax.servlet.ServletException을 상속받아야 한다.  
   
- <img ServletCapture1>
+ ![Servletcapture1](./Images/ServletCapture1.png)
  
  _배포 서줄자(Deployment Descriptor)__
  
