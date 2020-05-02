@@ -2643,7 +2643,7 @@ __Servlet 설계 규약__
   -  HTTP 프로토콜을사용하는서블릿은 javax.servlet.http.HttpServlet 클래스를 상속받는데 HttpServlet클래스는         javax.servletGenericServlet을 상속하여 구현된 클래스다. 
   - 서블릿의 Exception을 처리하기 위해서는 javax.servlet.ServletException을 상속받아야 한다.  
   
- ![Servletcapture1](./Images/Servletcapture1.png)
+ ![Servletcapture1](./img/Servletcapture1.png)
  
  _배포 서줄자(Deployment Descriptor)__
  
@@ -2722,8 +2722,7 @@ __Context Path__
     - 포트번호 80을 사용하는경우 포트번호생략가능(그 외 포트는포트번호입력) 
     - 사용하는어플리케이션이 1개 인 경우 Context Path또한생략 가능하게설정 가능
 
-<img ServletCapture2>
-
+![Servletcapture2](./img/Servletcapture2.png)
 
 # 사용자 데이터 전송 방식   
 
