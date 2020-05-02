@@ -2643,7 +2643,7 @@ __Servlet 설계 규약__
   -  HTTP 프로토콜을사용하는서블릿은 javax.servlet.http.HttpServlet 클래스를 상속받는데 HttpServlet클래스는         javax.servletGenericServlet을 상속하여 구현된 클래스다. 
   - 서블릿의 Exception을 처리하기 위해서는 javax.servlet.ServletException을 상속받아야 한다.  
   
- ![Servletcapture1](./Images/ServletCapture1.png)
+ ![Servletcapture1](./Images/Servletcapture1.png)
  
  _배포 서줄자(Deployment Descriptor)__
  
