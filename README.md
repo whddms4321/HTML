@@ -1,6 +1,63 @@
-[책갈피](#책갈피)
+
+
+---
 # 맨위로
 
+<details>
+	<summary>책갈피 펼치기</summary>
+[1.HTML](#html)   
+  - [META](#meta)     
+  - [SCRIPT](#script)        
+  - [LINK](#link)       
+  - [영역 태그](#영역-태그)       
+  - [시멘틱 태그](#시멘틱-태그)     
+  - [멀티미디어 태그](#멀티미디어-태그)      
+  - [하이퍼링크 태그](#하이퍼링크-태그)       
+  - [폼 태그](#폼-태그)       
+[2. CSS](#css)     
+  - [선택자](#css-선택자)    
+  - [텍스트 스타일](#텍스트-스타일)     
+  - [문단 스타일](#문단스타일)   
+  - [배경 스타일](#배경-스타일)     
+  - [레이아웃 스타일](#레이아웃-스타일)   
+  - [여백 스타일](#여백-스타일)   
+  - [애니메이션](#애니메이션)   
+    
+[3. javascript](#javascript)   
+  - [개요](#개요)   
+  - [배열](#배열)   
+  - [함수](#함수)   
+  - [객체](#객체)   
+  - [bom](#bom)    
+  - [dom](#dom)     
+  - [이벤트](#이벤트)    
+  - [유효성검사](#유효성-검사)    
+      
+      
+[4.jQuery](#jquery)       
+  - [객체탐색](#객체탐색)   
+  - [jQuery지원기능](#jquery-지원하는-것들)    
+  - [객체조작](#객체-조작)    
+  - [이벤트](#이벤트)    
+	
+[5.JSP/Servlet](#jsp-servlet)    
+  
+</details>
+
+---
+
+
+<details>
+	<summary>필요한 사이트 링크</summary>	
+  
+  
+1. 색추천 사이트:  https://www.webdesignrankings.com/resources/lolcolors/
+1. 색추천 사이트2: https://www.webfx.com/web-design/color-picker/4CEB8B/
+1. 코드 사이트 : https://www.w3schools.com/
+1. db 테이블 설계 사이트 : https://aquerytool.com/
+
+
+</details>
 # html
 
   - 화면구면
@@ -2986,56 +3043,4 @@ $.ajax()의 주요 속성
 
 ---
 
-# 책갈피
-
-  
-
-[1.HTML](#html)   
-  - [META](#meta)     
-  - [SCRIPT](#script)        
-  - [LINK](#link)       
-  - [영역 태그](#영역-태그)       
-  - [시멘틱 태그](#시멘틱-태그)     
-  - [멀티미디어 태그](#멀티미디어-태그)      
-  - [하이퍼링크 태그](#하이퍼링크-태그)       
-  - [폼 태그](#폼-태그)       
-[2. CSS](#css)     
-  - [선택자](#css-선택자)    
-  - [텍스트 스타일](#텍스트-스타일)     
-  - [문단 스타일](#문단스타일)   
-  - [배경 스타일](#배경-스타일)     
-  - [레이아웃 스타일](#레이아웃-스타일)   
-  - [여백 스타일](#여백-스타일)   
-  - [애니메이션](#애니메이션)   
-    
-[3. javascript](#javascript)   
-  - [개요](#개요)   
-  - [배열](#배열)   
-  - [함수](#함수)   
-  - [객체](#객체)   
-  - [bom](#bom)    
-  - [dom](#dom)     
-  - [이벤트](#이벤트)    
-  - [유효성검사](#유효성-검사)    
-      
-      
-[4.jQuery](#jquery)       
-  - [객체탐색](#객체탐색)   
-  - [jQuery지원기능](#jquery-지원하는-것들)    
-  - [객체조작](#객체-조작)    
-  - [이벤트](#이벤트)    
-	
-[5.JSP/Servlet](#jsp-servlet)    
-   
-
 [맨위로](#맨위로)
- 
-  __필요한 사이트 링크__
-  
-    1. 색추천 사이트:  https://www.webdesignrankings.com/resources/lolcolors/
-    1. 색추천 사이트2: https://www.webfx.com/web-design/color-picker/4CEB8B/
-    1. 코드 사이트 : https://www.w3schools.com/
-    1. db 테이블 설계 사이트 : https://aquerytool.com/
-    1. 
-    
-    http://52.78.124.212/dogdogcatcat
