@@ -1,3 +1,6 @@
+__KH 정보 교육원 수업 자료__
+
+사용한 프로그램, 언어들
 
 
 ---
@@ -56,7 +59,7 @@
 1. 색추천 사이트2: https://www.webfx.com/web-design/color-picker/4CEB8B/
 1. 코드 사이트 : https://www.w3schools.com/
 1. db 테이블 설계 사이트 : https://aquerytool.com/
-
+1. json해석 사이트 :http://json.parser.online.fr/
 
 </details>
 
