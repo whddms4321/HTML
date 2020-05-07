@@ -1,11 +1,10 @@
-__KH 정보 교육원 수업 자료__
+<h2>KH 정보 교육원 수업 자료<h2>
 
 사용한 프로그램, 언어들
 
 
 ---
 
-# 맨위로
 
 <details>
 	<summary>책갈피 펼치기</summary>
@@ -2844,8 +2843,9 @@ __HttpServletResponse(interface)__
   - 동적인 웹 페이지를 java언어를 이용하여 html,xml 기반으로 작성할 수 있는 기술
   - Servlet은 수정 시 재 컴파일(서버재시작)을 해야하지만 jsp는     동적으로 컴파일 하기 때문에 재컴파일 없이 유연하게 작업 가능
 
-<img ServletCapture3>
+![Servletcapture3](./img/Servletcapture3.png)
 
+![Servletcapture4](./img/Servletcapture4.png)
  __JSP 특징__
  
   - JSP 파일이변경되지않는다면‘.jsp’ 파일에대한컴파일은다시 일어나지 않는다.
@@ -3049,4 +3049,6 @@ $.ajax()의 주요 속성
 
 ---
 
-[맨위로](#맨위로)
+
+
+
