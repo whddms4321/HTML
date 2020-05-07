@@ -46,9 +46,12 @@
 [5.JSP/Servlet](#jsp-servlet)
   - [웹 개발 환경 구축](#웹-개발-환경-구축)    
   - [JSP Element](#jsp-element)
-  - [Servlet](#servlet)   
-  - [JSP](#jsp)   
-  
+  - [Servlet](#servlet)    
+  - [JSP](#jsp)    
+  - [JSP 내장객체들](#jsp-내장-객체들)    
+  - [MVC 정의](#mvc-정의)   
+  - [EL](#el)   
+  - [JSTL](#jstl)   
   
 </details>
 
@@ -2999,6 +3002,7 @@ __Expression tag__
 <p> 현재 시간은 <%=new java.util.Date() %> 입니다.
 ※ 표현 태그에서는 ‘;’를 를 붙이지 않는다.
 
+
 # jsp 내장 객체들
 
   - request,response,out 등등..
@@ -3114,6 +3118,136 @@ __JSP Exception 처리__
 __MVC패턴 종류__
 
 1. MVC1
+![MVCcapture2](./img/MVCcapture2.png)
+2. MVC2
+![MVCcapture3](./img/MVCcapture3.png)
+
+- view 동적 페이지 경우
+
+	- request 객체의 RequestDispatcher 객체로 다른 서블릿이나 JSP페이지로 정보를 전달할 수 있다.
+
+```
+RequestDispatcher rd = request.getRequestDispatcher("경로값");<정보를 받을 경로>
+request.setAttribute("키값",변수명,자료); <전달할 자료를 키값과 함께 전달>
+rd.forward(request,response);<response와request를 인자값으로 전달해 정보 전송>
+```
+
+- View 정적 페이지 경우
+
+  - view에 정보를 전달한 필요가 없기에, 이떄는 HttpServletResponse의 sendRedirect() 사용
+```
+response.sendRedirect("/error.html");
+```
+
+# 액션태그 el jstl
+
+  1. __JSP Action Tag__
+
+    - XML 기술을 이용해 기존의 JSP 문법을 확장해 사용가능
+    - 웹 브라우저에서 실행되는게 아닌 웹 컨테이너에서 실행되고 결과만 출력
+
+  <table>
+    <tr>
+      <th></th>
+      <th>표준 액션 태그</th>
+      <th>커스텀 액션 태그</th>
+    </tr>
+    <tr>
+      <td>사용법<td>
+      <td>JSP페이지에서 바로 사용,    태그 앞에 jsp 접두어 붙음</td>
+      <td>별도의 라이브러리 설치 필요,    라이브러리 선언에 맞는 접두어가 붙음</td>
+    </tr>
+    <tr>
+      <td>예시</td>
+      <td><jsp:include page="header.jsp"/></td>
+      <td><c:set var="cnt" value="0"/></td>
+    </tr>    
+  </table>    
+
+  __표준 액션 태그__
+  
+    - JSP에서 기본 재공
+    
+  |태그이름|설명|
+  |:--:|:--:|
+  |jsp:include| 현재 페이지에 특정 페이지를 포함 할 때 사용|
+  |jsp:forward| 현재 페이지 접근 시 특정 페이지로 이동 시킬 때 사용|
+  |jsp:param|<jsp:incpude>,<jsp:forward>의 하위 요소로 사용되며,    해당 페이지에 전달할 값을 기록할 때 사용|
+  |jsp:useBean| JavaBean 객체를 사용하기 위한 태그|
+  |jsp:setProperty| Java 객체 사용 시 Setter 역할과 동일|
+  |jsp:getProperty| Java 객체 사용 시 Getter 역할과 동일|
+  
+  __jsp:include란__
+  
+    - <%@ include file="파일명" %>과 쓰임이 동일하나, jsp 파일이 java 파일로 변환될 때 삽입되는 <%@ include %>와     달리               <jsp:include>는 jsp파일이 java 파일로 바뀌고 컴파일이 완료되어 런타임 시 삽입된다.
+
+  ```
+  사용방식
+  <jsp:include page=“ 파일명” />
+  <jsp:include page=“./header.jsp” />
+  ```
+  
+  __jsp:forward란__
+  
+    - 하나의 jsp페이지에서 다른 jsp로 요청처리를 전달할 떄 사용
+    - 전달하는 페이지에서 request와 response 객체가 같이 전달되고, URL 변경 x
+    
+  ```
+  사용방식
+  <jsp:forward page=“ 파일명” />
+  <% if(str.equals(“A”)) { %>
+  <jsp:forward page=“A_Page.jsp” />
+  <% } else { %>
+  <jsp:forward page=“B_Page.jsp” />
+  <% } %>
+  ```
+  
+  __jsp:useBean__
+  
+    - java class를 참조해 빈 객체를 생성하고, setProperty와 getProperty를 통해 값을 저장, 조회할 수 있고, 이미 객체가 있다면     기존     객체를 참조한다.
+
+  ```
+  사용방법
+  <jsp:useBean id=“ 객체명” class=“ 패키지명. 클래스명＂ scope=“ 범위”/>
+  <jsp:useBean id=“m” class=“model.vo.Member ＂ scope=“request”>
+  <jsp:setProperty name=“m” property=“memberName”
+  value=“ 홍길동” />
+  </jsp:useBean>
+  ```
+  
+# el
+
+  __EL__
+
+    - JSP 2.0에서 추가됨, JSP에서 쓰이는 자바 코드를 간결하게 사용하기 위해 고안됨.     ${value} 형식으로 표현
+
+  ```
+  사용방법
+  <%= request.getParameter("name") %>와
+  ${param.name}은 같다.
+  ```
+
+  ![ELcapture1](./img/ELcapture1.png)
+  ![ELcapture2](./img/ELcapture2.png)  
+  
+
+  __EL 내장객체__
+  
+  |객체 명| 설명|
+  |:--:|:--:|
+  |pageScope| page 영역의 객체에 접근|
+  |requestScope| request 영역의 객체에 접근|
+  |sessionScope| session 영역의 객체에 접근|
+  |applicationScope| application 영역의 객체에 접근|
+  |param| 전달된 파라미터 값을 받아올 때 사용|
+  |paramValues| 전달된 파라미터들을 배열로 받아올 때 사용|
+  |header| 사용자의 특정 헤더 정보를 받아올 때 사용|
+  |headerValues| 사용자의 헤더 정보를 배열로 받아올 때 사용|
+  |cookie| ${cookie.key 명}으로 쿠기값을 조회|
+  |iniParam| 초기 파라미터를 조회|
+  |pageContext pageContext 경로를 조회|
+
+  # jstl
 
 
 
