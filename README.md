@@ -43,7 +43,12 @@
   - [객체조작](#객체-조작)    
   - [이벤트](#이벤트)    
 	
-[5.JSP/Servlet](#jsp-servlet)    
+[5.JSP/Servlet](#jsp-servlet)
+  - [웹 개발 환경 구축](#웹-개발-환경-구축)    
+  - [JSP Element](#jsp-element)
+  - [Servlet](#servlet)   
+  - [JSP](#jsp)   
+  
   
 </details>
 
@@ -2684,9 +2689,76 @@ $('선택자').animate({
 # jsp servlet
 
 
+# 서버 개요
 
-# 기본개요
+Server와 client
 
+  - 서버 : 서비스를 제공하는 컴퓨터
+  - 클라이언트 : 서비스를 이용하는 사용자
+
+Server 종류
+
+|종류|설명|
+|:--:|:--:|
+|Web Server|웹 브라우저와 HTTP 프로토콜을 사용하여 사용자의 요구에   따른 특정 서비스를 제공하는 서버|
+|Mail Server|인터넷을 통해 사용자 간의 전자 우편을 주고받는 서비스를 제공하는 서버 |
+|FTP Server |서버 내에 파일을 업로드, 다운로드 할 수 있도록 파일 관리 기능을 제공하는 서버|
+|Telnet Server |Terminal, 텍스트로만 이루어진 창에서 특정 명령어를 통해 원격지 서버를 접속, 관리|
+|Database Server | Data를 저장하고, 원격지에서 접속할 경우 권한에 따라 해당 데이터를       열람, 추가, 수정, 삭제 기능을 처리 |
+
+![Servercapture1](./img/Servercapture1.png)
+
+__Web Server란__
+
+  - 사용자에게 HTML 페이지나 jpg,png 같은 이미지를 HTTP 프로토콜을 통해 웹브라우저에 제공하는 서버로,     내부의 내용이 이미 만들어져 있는 정
+적인 요소들을 화면에 보여주는 역할을 한다.  
+
+|종류|설명|
+|:--:|:--:|
+|Apache |Apache Software Foundation에서 만든 서버로 HTTP 통신에 대한 여러 라이브러리를 제공|
+|Windows IIS |Windows OS에서 제공하는 웹 서버로, 높은 수준의 보안성과 성능을 제공 |
+|NGINX |무료 오픈 소스 서버로, 사용자 요청을 스레드가 아닌 확장성이 있는 이벤트 기반 설계를    통해 필요한 리소스만 할당하여 사용|
+
+__WAS란__
+
+  - Web Application Server의 의 약자로, 사용자가 요청한 서비스의 결과를 스크립트 언어 등으로 가공하여 생성한      동적인 페이지를 사용자에게 보여주는 역할  
+  
+|종류|설명|
+|:--:|:--:|
+|tomcat|Apache Software Foundation에서 Servlet과 JSP를 통한 동적인 웹문서를     처리하기 위해 만든 웹 어플리케이션 서버|
+|wildfly|JBOSS라고도 불리며, 톰캣이 제공하는 Servlet Container 뿐만 아니라,      EJB Container를 별도로 제공하여 폭넓은 서비스를 구현|
+|jeus|국산 WAS로 대용량 데이터 트랜잭션을 고성능으로 처리하며 개발 및 운영에      관한 기술지원이 뛰어남|
+
+__WAS 에서 사용하는 언어들__
+
+|종류|설명|
+|:--:|:--:|
+|jsp (Java Server Pages)|SUN사의 JAVA를 기반으로 웹 환경에 맞게 개발된 동적 웹 프로그래밍 언어|
+|php(ProfessionalHypertextPreprocessor)|Rasmus Lerdorf가 개발한 동적 웹페이지 생성 스크립트 언어 C, C++,     Perl, Java등의 언어를 기반으로 하여 만들어 졌고, C언어 문법과 유사|
+|asp(Active Server Pages)|Micro Soft에서 개발한 동적 웹 페이지 생성 스크립트 언어|
+
+__Web Server와 WAS의 차이__
+
+|구분|장점|단점|
+|:--:|:--:|:--:|
+|Web Server| - 요청에 대한 결과 페이지만 전송하기 때문에 처리속도가 빠름     - HTML같은 단순문서로만 구성되어 있어 구현이 쉬움|- 만들어진 정보만 보여주기 때문에 서비스가 한정적 - 문서의 내용이 변경될 경우 직접 수정|
+|WAS |- 여러 데이터 활용이 가능하여 다양한 서비스 제공 가능     - 문서의 내용이 변경될 경우 직접 수정하지 않음|- 데이터를 처리하여 결과를 전송해야 하기 때문에 처리속도가 느림     - 서비스에 해당하는 소스를 직접 작성해야 하기 때문에 구현이 어려움|
+
+---
+# 웹 개발 환경 구축
+
+1. 아파치-톰캣 서버
+   - window > Preferences > JAVA > installed JREs를 통해 JRE서버 확인 > 그에 맞는 아파치-톰캣 서버 다운 및 설치     
+   - window → preferences → Servers → Runtime Environments → Add > 다운받은 아파치-톰 서버 경로 설정
+   - server란에서 new>server에서 다운받은 버전의 아파치-톰캣 서버 선택 후 생성
+2. 문자 set 설정
+  - window → preferences → General → Workspace → UTF-8
+  - window → preferences → Text Editors → Spelling → UTF-8
+  - window → preferences → JSON Files → UTF-8
+  - window → preferences → Web → CSS Files → UTF-8
+  - window → preferences → Web → HTML Files → UTF-8
+  - window → preferences → Web → JSP Files → UTF-8
+  
 ---
 
 # servlet
@@ -2786,21 +2858,25 @@ __Context Path__
 
 ![Servletcapture2](./img/Servletcapture2.png)
 
-# 사용자 데이터 전송 방식   
+__사용자 데이터 전송 방식__
 
-  get 방식   
-    - URL창 “?”뒤에 데이터를입력하는방법(쿼리스트링)으로 전송     
-  전송할데이터가여러 개인 경우 &를 이용하여 여러 개 전송 데이터검색에 많이 사용되며, 데이터크기에     
-  한계가있으며, 보안에취약    
-  post   
-    - 방식 HTTP 헤더의내용으로보내는방식으로데이터크기에제한이없고, 보안 이 뛰어남    
-
-  ※ Servlet이 두 방식 중 하나로전달 받으면 해당하는 메소드를 호출    
-  html의 <form>태그에서 method속성을 이용하여 전송 방법 결정 : 명시하지않으면 get  
+  1. get   
+    - URL창 “?”뒤에 데이터를입력하는방법(쿼리스트링)으로 전송     전송할데이터가여러 개인 경우 &를 이용하여 여러 개 전송 데이터 검색에 많이      사용되며, 데이터 크기에 한계가 있고, 보안에 취약하다
   
-  doGet()   
-    - client에서데이터를 get방식으로전송하게되면호출되는메소드   
+  2. post   
+  
+    - 방식 HTTP 헤더의 내용으로 보내는 방식으로 데이터크기에 제한이 없고, 보안이 뛰어남   
+
+  ※ Servlet이 두 방식 중 하나로전달 받으면 해당하는 메소드를 호출  
+  
+  html의 <form>태그에서 method속성을 이용하여 전송 방법 결정 : 명시하지않으면 get사용  
+  
+  doGet()
+  
+    - client에서데이터를 get방식으로전송하게되면호출되는메소드 
+    
   doPost()   
+  
     - client에서데이터를 post방식으로전송하게되면 호출되는메소드   
     
   ※ ServletException을 처리해야함     
@@ -2810,6 +2886,7 @@ __HttpServletRequest(interface)__
   - Http Servlets을 위한 요청정보(request information)를 제공 
   - 인터페이스구현은 컨테이너가 설정하며, 메소드만사용 
   - javax.servlet.ServletRequest를 상속
+  
   
 |메소드 |설명|
 |:--:|:--:|
@@ -2846,13 +2923,14 @@ __HttpServletResponse(interface)__
 ![Servletcapture3](./img/Servletcapture3.png)
 
 ![Servletcapture4](./img/Servletcapture4.png)
+
  __JSP 특징__
  
   - JSP 파일이변경되지않는다면‘.jsp’ 파일에대한컴파일은다시 일어나지 않는다.
   - JSP 파일이변경될때마다, Web Container는 translation, compile, load, initialization 과정을수행
   - JSP 파일의배포 환경(위치)은 HTML과 동일
   
-__JSP Element 표기 법__
+# jsp element 표기법
 
 |종류 |표기법 |
 |:--:|:--:|
@@ -2873,15 +2951,18 @@ __Comments tag__
 
 __Directive tag__
 
-  - JSP 페이지전체에 영향을 미치는 정보를 기술할때 사용 
+  - JSP 페이지전체에 영향을 미치는 정보를 기술할때 사용    
+  
   <%@ 지시자속성=“값” %> 
+  
   - 지시자종류 
-    1. <%@ page import=“java.io.*” %>    
+  
+    1. <%@ page import=“java.io.*” %>     
       - jsp 페이지에대한 설정정보를컨테이너에알려주는지시자 
       - 여러개 사용가능하지만 import를 제외하고는 한페이지당 1개만선언 
-    2. <%@ include file=“header.html” %> 
+    2. <%@ include file=“header.html” %>   
       - 페이지내부에다른 jsp, html 페이지를 불러오는 지시자 
-    3. <%@ taglib url=“경로” prefix=“a” %> 
+    3. <%@ taglib url=“경로” prefix=“a” %>    
       - jsp 내부에서 EL, Action Tag Library, JSTL를 사용할때 사용
       
 __Declaration tag__
@@ -2891,45 +2972,150 @@ __Declaration tag__
 ```  
 <%! public static final String PI = 3.14; %> 
 <%! private int count; %>
-<%! public String test()
-  { return “testName”; } 
+<%! public String test() { 
+	return “testName”; 
+	} 
 %>     
 ```
 
 
+__Scriptlet tag__
 
-
-<% for(int i=0;i<10;i++){ %>
-.jsp > _jsp.java > _jsp.class > webconotainer 
-로 3단계로 자동으로 변환되며 처리됨
+  - jspService 메소드의 로컬 변수와 코드를 작성할 때 사용
   
-JSP Element 표기법
+// 로컬 변수 선언  
+<% int i = 0; %>
+// 자바 코드 내용 기술
+<% if (i > 10) { %>
+<p>10 보다 큽니다.</p>
+<% } else { %>
+<p>10 보다 작습니다.</p>
+<% } %>
 
-Scriptlet tag
-Expression tag
+__Expression tag__
 
+  - Servlet 코드에서 out.print()의 역할을 수행  
 
-<%@ include %>
+<p> 현재 시간은 <%=new java.util.Date() %> 입니다.
+※ 표현 태그에서는 ‘;’를 를 붙이지 않는다.
 
+# jsp 내장 객체들
 
-Scriptlet tag
+  - request,response,out 등등..
 
-  - jspservece 메소드의 로컬 변수와 코드를 작성할 때 사용
+jsp의 영역(scope)
+
+  - page : 하나의 jsp페이지를 처리할 떄 사용되는 영역
+  - request : 하나의 요청을 처리할 때 사용되는 영역
+  - session : 하나의 브라우저와 관련된 영역
+  - application : 하나의 웹 어플리케이션과 관련된 영역
+  
+  - page<request<session<application 
+ 
+내장 객체의 종류
+
+|내장 객체|설명|
+|:--:|:--:|
+|request| HttpServletRequest 객체 참조 변수(중요)|
+|response| HttpServletResponse 객체 참조 변수(중요)|
+|out |JspWriter 객체 참조 변수|
+|session |HttpSession 객체 참조 변수(중요)|
+|application| ServletContext 객체 참조 변수|
+|page |현재 JSP 페이지에 대한 참조 변수|
+|exception |발생 하는 Throwable 객체에 대한 참조 변수|
+
+- request 메소드
+
+|메소드명| 설명|
+|:--:|:--:|
+|getParameter(name) |name 파라미터의 값을 리턴한다.(중요)|
+|getParameterValues(name)| name 파라미터의 값을 배열 형태로 리턴한다.(checkbox)|
+|getParameterNames()| 요청에 포함된 파라미터 이름들을 리턴한다.|
+|getMethod()| 현재 요청 방식을 리턴한다(GET, POST)|
+|getSession()| 현재 세션 객체를 리턴한다.|
+|setCharacterEncoding() |클라이언트에서 서버로 전달된 값을 지정한 문자셋으로 변경한다. (중요)|
+
+- response 메소드
+
+|메소드명| 설명|
+|:--:|:--:|
+|sendRedirect(url) |응답 결과를 요청으로 하여 지정된 url에 재전송 한다.|
+|setStatus(int statuscode)| 응답으로 전송될 상태 코드를 설정한다.|
+|sendError(int statuscode)| 에러가 발생할 경우 응답 헤더에 상태 코드를 설정한다.|
+|setContentType(String)| 서버에서 클라이언트로 전달될 값의 데이터 타입을 설정한다.|
+
+page 지시자 태그 사용법
+
+  - 보통 import 속성을 제외하고 한페이지에 하나씩만 선언할수 있음, 첫줄에 작성
+  
+  import
+    - 변환될 서블릿 클래스에 필요한 자바 클래스의 import 문을 정의한다.
+    - java.lang, javax.servlet, javax.servlet.http, javax.servlet.jsp 는 기본적으로     import 되어있다.
+    - 여러 package import 시 시 ‘,’ 기호를 이용하여 구분한다.
+
+  ```
+  <%@ page import=“java.io.*” %>
+  <%@ page contentType=“text/html:charset=utf8” %>
+  ```
+  contentType  
+    - MIME 타입과 문자 인코딩을 설정한다.  
+  
+  isErrorPage
+  
+    - 현재 페이지가 JSP 오류 처리용 페이지인지를 정의한다.
+    - 값은 true or false(default) 이다.
+    - true인 인 경우, exception 내장 객체를 사용할 수 수 있다.
+  ```
+  <%@ page isErrorPage=“true” %>
+  ```
+  
+  errorPage
+    - 해당 JSP 페이지가 발생시키는 모든 runtime exception 을 처리할 다른    JSP 페이지를 지정한다
+  ```  
+  <%@ page errorPage=“/error/errorForm.jsp” %>
+  ```
+  
+
+__JSP Exception 처리__
+
+  - JSP 페이지에서 발생하는 Exception을 을 처리하기 위해서는 별도의 예외처리 페이지를 지정한다.
+  - 하나의 JSP 페이지에 대한 예외처리는 하나만 지정할 수 수 있기 때문에 예외마다 다른 예외 처리는 불가능하다
+  - 예외가 발생할 페이지   
+  <%@page errorPage=“/error/exceptionPage.jsp” %>   
+  - 예외를 처리할 페이지   
+  <%@page isErrorPage=“true” %>   
   
   
-Expression tag
+# mvc 정의
 
-  - 자바의 객체를 출력 하고 싶을 때 사용 ;사용 안함
+  - Model, View, Controller의 약자로, 웹 개발시 MVC 패턴을 적용해 각각의 역할 별 작업이 가능하도록 분담하는 설계 패턴
   
-내부 태그
+![MVCcapture1](./img/MVCcapture1.png)
 
-page 하나의 jsp
-request 
-session 브라우저 단위로 저장
-spplivsyion 하느의 웹 어플과 관련된 영역
+  1. Model
+  
+    - 웹 어플리케이션의 비지니스 로직과 수행할 서비스 담당
+    
+    Service : 여러 DAO를 호출해 데이터 접근/갱신을 하고, 그렇게 읽은 데이터에 대한 비지니스 로직을 수행해 Controller에    결과를 전송하는 클래스
+    DAO : 데이터베이스에 직접 접근해 요청받은 결과를 반환하는 클래스
+    VO : 계층 간 데이터 교환을 위핸 객체 클래스(ex 생성자)
+    
+  
+  2. View
+  
+    - 사용자가 요청하거나 요청한 정보를 응답받아 볼 수 있는 화면을 담당하며 JSP,HTML 등을 통해 표현함
+    
+  3. Controller
+  
+    - 사용자 요청을 전달 받아 Service를 호출하고 view에 전송하는 클래스
+    - 전달 받은 정보로 VO객체를 이용해 Service를 통해 경과를 받아 View 화면에 전송해준다.
+    - MVC1 패턴에선 JSP, MVC2 패턴에서는 Servlet이 담당
+  
+__MVC패턴 종류__
+
+1. MVC1
 
 
-# 5월 1일자
 
 # 프로젝트 가이드
 
@@ -2996,7 +3182,7 @@ __Filter interface의 메소드__
  * 필터는 Filter interface를 implements하여 구현한 클래스를 web.xml에 등록하여 사용
  
 
-
+----
 
 # ajax
 
