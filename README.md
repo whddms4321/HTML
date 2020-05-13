@@ -3464,5 +3464,106 @@ __UML(Unified Modeling Language)__
 
 ---
 
+# 세미 프로잭트
+
+__우리조는 농산물을 공동구매할 수 있는 웹사이트를 구현하였음__
+
+  1. 
+  
+  2. 
+  
+  3. __프로젝트중 알게 된 것들__
+  
+    1. 부트스트랩
+    
+      부트스트랩은 CSS,HTML을 이용하여 웹을 만드는데 강력한 기능을 지원해주기에 자연스럽게 알게됨.
+      
+      세미 프로젝트 중 사진 슬라이드를 위해 크롤링을 구글링하여 우리 웹사이트에 접목 시킴.
+      ```
+      <div class="container">
+        <div class="d1">
+        <h2 class="font">전체 판매</h2>
+        </div>
+      </div>
+      <div id="demo" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+            <!-- 슬라이드 쇼 -->
+            <div class="carousel-item active">
+                <!--가로-->
+                <img class="d-inline-block" src="imgs/%EA%B5%B0%EA%B3%A0%EA%B5%AC%EB%A7%88.jpg" alt="First slide">
+                <img class="d-inline-block" src="imgs/%EA%B5%B0%EA%B3%A0%EA%B5%AC%EB%A7%88.jpg"  alt="First slide">
+                <img class="d-inline-block" src="imgs/%EA%B5%B0%EA%B3%A0%EA%B5%AC%EB%A7%88.jpg" alt="First slide">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>테스트</h5>
+                    <p></p>
+                </div>
+            </div>
+            <div class="carousel-item"> <img class="d-inline-block" src="imgs/%EC%A2%85%EA%B0%93%EC%A7%91%20%EA%B9%80%EC%B9%98.jpg"       alt="Second slide">
+                
+            <img class="d-inline-block" src="imgs/%EC%A2%85%EA%B0%93%EC%A7%91%20%EA%B9%80%EC%B9%98.jpg" alt="Second slide">
+                <img class="d-inline-block" src="imgs/%EC%A2%85%EA%B0%93%EC%A7%91%20%EA%B9%80%EC%B9%98.jpg" alt="Second slide">
+            </div>
+            <div class="carousel-item"> <img class="d-inline-block" src="https://images.pexels.com/photos/2544554/pexels-photo-2544554.jpeg?auto=compress&cs=tinysrgb&h=650&w=940" alt="Third slide">
+                <img class="d-inline-block" src="https://images.pexels.com/photos/2544554/pexels-photo-2544554.jpeg?auto=compress&cs=tinysrgb&h=650&w=940" alt="Third slide">
+                <img class="d-inline-block" src="https://images.pexels.com/photos/2544554/pexels-photo-2544554.jpeg?auto=compress&cs=tinysrgb&h=650&w=940" alt="Third slide">
+            </div>
+       ```
+      
+      버전은 부트스트랩 4.3을 찾아 사용하였다.  4.3에 필요한 링크는
+      
+      ```
+      <!--    부트스트랩 4.3 링크-->
+      <link rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous">
+        <!--    부트스트랩 4.3 종료-->
+      <!--    jquery와popper.js 연결(부트4.3에 필요)-->
+      <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"></script>
+      <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"></script>
+      <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous">
+      </script>
+      <!--    jquery와popper.js 종료(부트4.3에 필요)-->  
+      ```
+      
+      그러나 우리사이트에 맞게 아이콘스타일을 주기위해선 아이콘을 바꿔야 했다. 그래서 4.3버전에서 사용가능한       폰트어섬을 사용함. 
+      
+      ```
+      <!--  폰트어썸 링크(부트4.3만 가능)-->
+      <link rel="stylesheet"
+        href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+        integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ"
+        crossorigin="anonymous">
+      <!--    폰트어썸 종료-->
+      <!-- 폰트어썸 화살표 아이콘 예시 -->
+      <i class="fas fa-angle-left f-black" aria-hidden="true"></i>
+      <!-- 폰트어썸 화살표 종료 -->
+      ```
+      
+      아이콘을 구현했으나, 이번에는 부트스트랩의 css와 jsp:include로 불러온 header,footer간의 css충돌이 일어나면서    그것을 수정하기 위해 
+      css의 우선순위를 찾아 보게됨.
+      
+      ```
+      기본적으로 뒤에 나오는 css가 우선순위가 높습니다. 
+      !important > inline style attribute > id > class, 다른 attribute, 수도클래스(:first-child같은 것)      > tag element, 수도엘레먼트   (::before같은 것) 순으로 우선순위가 높습니다.
+      우선순위가 같다면 개수가 많은 css가 우선순위가 높습니다.
+      ```
+      
+      
+
+
+  
+
+
+
+
 
 
