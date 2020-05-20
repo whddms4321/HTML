@@ -72,6 +72,8 @@
 1. 순서도툴 사이트: https://app.diagrams.net/
 1. JSON 툴 사이트 : http://json.parser.online.fr/
 1. 고화질로 이미지로 변환해주는 사이트: https://waifu2x.booru.pics/
+1. 무료이미지 지원 사이트: https://www.gettyimageskorea.com/
+1. 배경 날려주는 사이트: https://www.remove.bg/ko
 </details>
 
 
