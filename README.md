@@ -62,7 +62,7 @@
 
 
 <details>
-	<summary>필요한 사이트 링크</summary>	
+	<summary>유용한 사이트 링크</summary>	
   
   
 1. 색추천 사이트:  https://www.webdesignrankings.com/resources/lolcolors/
@@ -71,7 +71,7 @@
 1. db 테이블 설계 사이트 : https://aquerytool.com/
 1. 순서도툴 사이트: https://app.diagrams.net/
 1. JSON 툴 사이트 : http://json.parser.online.fr/
-
+1. 고화질로 이미지로 변환해주는 사이트: https://waifu2x.booru.pics/
 </details>
 
 
