@@ -8,8 +8,13 @@
 
 <details>
 	<summary>책갈피 펼치기</summary>
-	
-[1.HTML](#html)   
+
+[2.데이터베이스(DataBase)](#데이터베이스(database))   
+  - [DBMS](#dbms(database management system))   
+  - [DDL](#ddl)   
+  - [집합연산자](#집합연산자(set operator))   
+  - 
+[4.HTML](#html)   
   - [META](#meta)     
   - [SCRIPT](#script)        
   - [LINK](#link)       
@@ -18,7 +23,7 @@
   - [멀티미디어 태그](#멀티미디어-태그)      
   - [하이퍼링크 태그](#하이퍼링크-태그)       
   - [폼 태그](#폼-태그)       
-[2. CSS](#css)     
+[5. CSS](#css)     
   - [선택자](#css-선택자)    
   - [텍스트 스타일](#텍스트-스타일)     
   - [문단 스타일](#문단스타일)   
@@ -27,7 +32,7 @@
   - [여백 스타일](#여백-스타일)   
   - [애니메이션](#애니메이션)   
     
-[3. javascript](#javascript)   
+[6. javascript](#javascript)   
   - [개요](#개요)   
   - [배열](#배열)   
   - [함수](#함수)   
@@ -37,7 +42,7 @@
   - [이벤트](#이벤트)    
   - [유효성검사](#유효성-검사)    
       
-[4.jQuery](#jquery)       
+[7.jQuery](#jquery)       
   - [객체탐색](#객체탐색)   
   - [jQuery지원기능](#jquery-지원하는-것들)    
   - [객체조작](#객체-조작)    
@@ -74,7 +79,960 @@
 1. 고화질로 이미지로 변환해주는 사이트: https://waifu2x.booru.pics/
 1. 무료이미지 지원 사이트: https://www.gettyimageskorea.com/
 1. 배경 날려주는 사이트: https://www.remove.bg/ko
+
 </details>
+
+
+
+# 데이터베이스(database)
+
+  1. DataBase 정의
+  
+    - 운영 데이터 : 조직의 목적을 위해 사용되는 데이터
+    - 공용 데이터 : 공동으로 사용되는 데이터
+    - 통합 데이터 : 중복을 최소화하여 중복으로 인한 데이터 불일치 현상 제거
+    - 저장 데이터 : 컴퓨터 저장장치 저장된 데이터
+    
+  1. DataBase의 특징
+  
+    - 실시간 접근성 : 사용자가 데이터를 요청하면 실시간으로 결과를 서비스 함.
+    - 계속적인 변화 : 데이터 값은 시간에 따라 항상 바뀐다.
+    - 동시 공유 : 데이터베이스는 서로 다른 업무 또는 여러사용자에게 공유된다.
+    - 내용에 따른 참조 : DB에 저장된 데이터는 데이터의 물리적 위치가 아니라 DB값에 따라 참조됨
+    
+  # dbms(database management system)
+  
+    - 데이터베이스에서 데이터를 추출,조작,정의,제어 등을 할 수 있게 해주는 DB 전용 관리 프로그램  
+    
+  1. DBMS의 기능
+  
+  |기능|설명|
+  |:--:|:--:|
+  |데이터 추출(Retrieval)|사용자가 조회하는 데이터 혹은 응용프로그램의 데이터를 추출|
+  |데이터조작(Manipulation)|데이터를 조작하는 소프트웨어가 요청하는 데이터의 삽입,수정,삭제 작업을 지원|
+  |데이터정의(DEfinition)|데이터의 구조를 정의하고 데이터 구조에 대한 삭제 및 변경 기능을 수행|
+  |데이터제어(Control)|데이터베이스 사용자를 생성하고 모니터링하며 접근을 제어 백업과 회복,동시성 제어 등의 기능을 지원|
+  
+  1. DBMS 사용 이점
+  
+  |주요 이점|설명|
+  |:--:|:--:|
+  |데이터독립화|데이터와 응용 프로그램을 분리시킴으로써 상호 영향 정도를 줄인 수 있다.|
+  |데이터중복 최소화   
+  데이터무결성 보장|중복되는 데이터를 최소화 시키면 데이터 무결성이 손상될 기능성이 줄어든다.   
+  중복되는 데이터를 최소화 시키면서 필요한 저장공간의 낭비를 줄일 수 있다.|
+  |데이터 보안 향상|응용프로그램은 DBMS를 통해 DBMS가 허용하는 데이터에만 접근 할 수 있다.   
+  권한에 맞게 데이터 접근을 제한하거나 데이터를 암호화 시켜 저장할 수 있다.|
+  |관리 편의성 향상|다양한 방법으로 데이터를 백업할 수 있다.   
+  장애 발생시 데이터를 복구 할 수 있다.|
+  
+  
+  1. 주요 DataBase의 의 유형
+  |데이터 모델|설명|
+  |:--:|:--:|
+  |계층 데이터 모델|데이터의 관계를 트리구조로 정의하고, 부모 자식형태를 갖는 구조로 데이터 중복 문제가 발생함|
+  |네트워크 데이터 모델|계층형 모델의 중복문제를 해결한 구조로 데이터 간의 다양한 관계를 그물처럼 갖는 구조
+복잡한 구조 때문에 구조 설계 및 변경이 매우 어려움|
+|
+관계 데이터 모델
+행과 열로 구성된 Table간의 관계를 나타내어 데이터를 표현하
+는 구조로 흔히 DBMS에서 사용하는 구조
+객체- 관계 데이터 모델
+객체 지향 데이터베이스 모델을 가진 관계형 데이터베이스로
+틀 안에 정해진 Table과의 관계였지만 사용자 정의 타입을 지원
+
+# ddl
+
+  - 데이터 정의 언어
+  - 객체를 만들고, 수정하고 삭제하는 구문,
+  - CREATE(생성), ALTER(수정),DROP(삭제)
+
+
+# 집합연산자(set operator)
+
+   - 두개 이상의 테이블에서 조인을 사용하지 않고, 연관된 데이터를 조회하는 방법
+   - 여러 개의 결과를 하나로 결합하는 방식
+   - 집합연산자는 ROW를 추가하여 데이터를 표현    
+   
+  1. 집합 연산자의 성립 조건   
+
+    - SELECT 절의 컬럼수가 동일해야하고
+    - SELECT 절의 동일위치에 존재하는 컬럼 데이터가 상호 호환 가능해야함.
+   
+    * 두 개 쿼리문을 각 집합연산자를 이용해 처리
+
+  ```
+  SELECT EMP_ID,EMP_NAME,
+  DEPT_CODE, SALARY FROM
+  EMPLOYEE
+  WHERE DEPT_CODE = 'D5’;    
+  이나
+  SELECT
+  EMP_ID,EMP_NAME,DEPT_CODE,
+  SALARY FROM EMPLOYEE
+  WHERE SALARY > 3000000;
+  ```
+    
+ 1. UNION(중복된 영역 제외하고 합)
+ 
+ ```
+ SELECT EMP_ID,EMP_NAME,
+ DEPT_CODE, SALARY FROM
+ EMPLOYEE
+ WHERE DEPT_CODE = 'D5'
+ UNION
+ SELECT
+ EMP_ID,EMP_NAME,DEPT_CODE,
+ SALARY FROM EMPLOYEE
+ WHERE SALARY > 3000000;   
+ ```   
+   
+   - __중복데이터는 1 개만출력__
+   - __EMP_ID로 로 오름 차순 정렬__   
+      
+   2. UNION ALL(중복데이터도 포함해 합)   
+      
+   ```
+   SELECT EMP_ID,EMP_NAME,
+   DEPT_CODE, SALARY FROM
+   EMPLOYEE
+   WHERE DEPT_CODE = 'D5'
+   UNION ALL
+   SELECT
+   EMP_ID,EMP_NAME,DEPT_CODE,
+   SALARY FROM EMPLOYEE
+   WHERE SALARY > 3000000;
+   ```   
+   
+   - __중복데이터를 모두 출력__   
+      
+      
+   3. INTERSECT(합집합)     
+      
+   ```
+   SELECT EMP_ID,EMP_NAME,
+   DEPT_CODE, SALARY FROM
+   EMPLOYEE
+   WHERE DEPT_CODE = 'D5’
+   INTERSECT
+   SELECT
+   EMP_ID,EMP_NAME,DEPT_CODE,
+   SALARY FROM EMPLOYEE
+   WHERE SALARY > 3000000;
+   ```   
+  
+      
+   - __중복데이터만 출력(교집합)__   
+   
+      
+   4. MINUS(차집합)     
+   
+   ```
+   SELECT EMP_ID,EMP_NAME,
+   DEPT_CODE, SALARY FROM
+   EMPLOYEE
+   WHERE DEPT_CODE = 'D5’
+   MINUS
+   SELECT
+   EMP_ID,EMP_NAME,DEPT_CODE,
+   SALARY FROM EMPLOYEE
+   WHERE SALARY > 3000000;
+   ```   
+   
+   - __첫번째 SELECT 문에서 중복데이터 제외하고 출력__   
+   
+   
+## SUBQUERY    
+   - 하나의 SELECT 문장 안에 포함된 또 하나의 SELECT 문장
+   - 서브쿼리는 메인쿼리 실행 전 한번만 실행   
+   
+   *서브쿼리조건*   
+      
+      1. 서브쿼리는 반드시 소괄호..
+      2. 서브쿼리는 연산자의 오른쪽에 위치
+      3. 서브쿼리 내에서 ORDER BY 문법은 지원 X(예외O)
+      4. 서브쿼리와 비교할 항목은 서브쿼리의 SELECT한 학목의 개수와    자료형이 일치해야함.
+      
+
+ - SUBQUERY 유형   
+   1. 단일행 SUBQUERY : 서브쿼리 조회값 개수가 1개인 경우     
+   ```
+   SELECT EMP_ID,
+   EMP_NAME,
+   DEPT_CODE,
+   SALARY
+   FROM EMPLOYEE
+   WHERE
+   SALARY >=
+   (SELECT AVG(SALARY)
+   FROM EMPLOYEE);
+   ```   
+   
+   2. 다중행 서브쿼리 : 서브쿼리의 조회값 개수가 행이 여러개인 경우    
+   ```
+   SELECT EMP_ID,
+   EMP_NAME,
+   DEPT_CODE,
+   SALARY
+   FROM EMPLOYEE
+   WHERE
+   SALARY IN
+   (SELECT MAX(SALARY)
+   FROM EMPLOYEE
+   GROUP BY DEPT_CODE);
+   ```   
+   ANY : 서브 쿼리의 결과 중에서 하나라도 참이면 참   
+      - > ANY : 최소값 보다 크면 / => ANY : 최소값 보다 크거나 같으면  
+      - < ANY : 최대값 보다 크면 / <= ANY : 최대값 보다 작거나 같으면  
+      - = ANY : IN 과 과 같은 효과 / != ANY : NOT IN과 과 같은 효과   
+   ```   
+   SELECT EMP_ID, EMP_NAME, DEPT_CODE, SALARY
+   FROM EMPLOYEE WHERE SALARY > ANY(2000000, 5000000);
+   ```   
+   ALL : 서브 쿼리의 결과가 모두 참이면 참  
+      - > ALL : 최대값 보다 크면 / => ALL : 최대값 보다 크거나 같으면  
+      - < ALL : 최소값 보다 크면 / <= ALL : 최소값 보다 작거나 같으면  
+   ```   
+   SELECT EMP_ID, EMP_NAME, DEPT_CODE, SALARY
+   FROM EMPLOYEE WHERE SALARY > ALL(2000000, 5000000);
+   ```   
+   
+   3. 다중열 서브쿼리 : 서브쿼리의 조회값 개수가 컬럼이 여러 개인 경우    
+   ```
+   SELECT EMP_NAME,
+   JOB_CODE,
+   DEPT_CODE,
+   HIRE_DATE
+   FROM EMPLOYEE
+   WHERE
+   (DEPT_CODE,JOB_CODE) IN
+   (SELECT DEPT_CODE,
+   JOB_CODE
+   FROM EMPLOYEE WHERE SUBSTR(EMP_NO,8,1)=2 AND ENT_YN = ‘Y’);
+   ```   
+   
+   4. 다중행 다중열 서브쿼리 : 서브쿼리 조회값 행,컬럼수가 여러개인 경우    
+   5. 상관 서브쿼리(상호연관) : 메인 쿼리가 바뀔때, 서브쿼리 결과값도 바뀌는 경우   
+   
+   5. 스칼라 서브쿼리 : 상관커리이면서 결과값이 1개인 경우   
+   
+   
+      
+
+  
+   
+   
+   
+
+
+   
+  ## **CREATE**   
+  
+    : DDL의 한 종류로 테이블이나 인덱스,유저 등 다양한 데이터베이스 객체를 생성하는 구문
+
+  1. 관리자 계정과 사용자 계정   
+  
+  : 관리자는 DB의 생성과 관리를 담당하는 계정으로, 모든 권한과 책임을 가지고, 사용자 계정은 DB에 대해      질의,갱신,보고서 작성등을 수행할 수 있는 계정
+
+  2. **사용자 생성**   
+    - CREATE USER 사용자 이름 IDENTIFIED BY 비밀번호;
+    - 생성 하더라도  아직 권한이 없기에 관리자 계정에서 권한을 부여해 줘야한다.
+    
+  3. **GRANT(권한부여)**   
+    - CONNECT: 사용자가 DB에 접속 가능하도록 하기위한 CREATE와 SESSION 권한이 있는 ROLE
+    - RESOURCE: 객체를 생성할 수 있는 권한과 ISERT,UPDATE,DELETE의 권한을 가진 ROLE
+    - EX) GRANT RESOURCE,CONNECT TO KH;
+    
+  4. **테이블 생성**   
+    ```
+    CREATE TABLE 테이블명 (   
+     ID VARCHAR2(20),   
+     PW VARCHAR2(20),   
+     NAME VARCHAR2(40)   
+    );
+    ```   
+    테이블에 주석 달기   
+    ```
+    COMMENT ON COLUMNN 테이블명.컬럼명 IS '주석내용';
+    ```      
+    
+
+ 5. **제약조건**       
+
+   - 테이블 작성 시 각 컬럼에 대한 기록에 대해 제약 조건 설정 가능   
+   - 데이터 무결성을 지키기 위한 제한된 조건      
+
+     제약조건 | 설명
+     ---|:---:|
+     'NOT NULL | 데이터에 NULL을 허용하지 않는다.
+     'UNIQUE' | 중복된 값을 허용하지 않는다.
+     'PRIMARY KEY' | NOT NULL + UNIQUE, 컬럼의 고유식별자로 사용됨.
+     'FOREIGN KEY' | 참조되는 테이블의 컬럼 값이 존재하면 허용한다.
+     'CHECK' | 저장 가능한데이터 값의 범위나 조건을 지정하여 설정한 값만 허용한다.
+
+
+     1. **NOT NULL**  
+
+         ```
+         CREATE TABLE USER_NOCONS(
+         USER_NO NUMBER NOT NULL
+         );
+         ```     
+       **NOT NULL은 데이터레벨에서는 사용 X**   
+
+
+     2. **UNIQUE**   
+
+       ```
+       CREATE TABLE USER_NO(
+       USER_ID VARCHAR2(20) UNIQUE
+       );
+       ```   
+
+       또는   
+
+       ```
+       CREATE TABLE USER_NO(
+       USER_ID VARCHAR2(20),
+       UNIQUE(USER_ID
+       );
+       ```         
+
+     3. **PRIMARY KEY**   
+
+       ```
+       CREATE TABLE NO(
+         USER_NO NUMBER PRIMARY KEY
+       );
+       ```      
+
+       또는   
+
+       ```
+       CREATE TABLE NO(
+         USER_NO NUMBER
+         PRIMARY KEY(USER_NO)
+       );
+       ```      
+
+     4. __FOREIGN KEY__      
+
+        - 참조 무결성을 유지하기 위한 제약조건
+        - 참조된 다른 테이블이 제공하는 값만 사용할 수 있도록 제한하는 것   
+
+     ```
+     CREATE TABLE NO(
+      USER_NO NUMBER
+      PRIMARY KEY(USER_NO)
+     );
+     ```      
+
+        - 참조하여 테이블 작성   
+
+      ```   
+      CREATE TABLE NO2(
+        PRODOCTOR_NO NUMBER REFERENCSE NO(USER_NO)
+      );
+      ```      
+
+         또는   
+
+      ```
+      CREATE TABLE NO2(
+        PRODOCTOR_NO NUMBER ,
+        FOREIGN KEY (PRODOCTOR_NO) REFERENCSE NO(USER_NO)
+      );
+      ```  
+
+         - **ON DELETE SET NULL과 ON DELETE CASCADE**
+         - 둘 모두 FOREIGN 뒤에 쓰게되면 참조하는 테이블이 삭제가 가능하다.
+         - ON DELETE SET NULL은 참조된 컬럼의 데이터 삭제시 해당 컬럼만 삭제하고 나머지 데이터 유지   
+         - ON DELETE CASCASE는 참조된 컬럼의 데이터 삭제시 데이터 전부 소거
+
+      5. **CHECK**    
+
+
+         - 해당 컬럼에 입력되거나 수정되는 값을 체크, 설정된 값 이외의 값이면 에러 발생   
+
+      ```
+      CREATE TABLE USER(
+        GENDER CHAR(6) CHECK (GENDER IN('남','여','중성'))
+      );
+      ```   
+
+
+    **SUBQUERY를 이용해 테이블 작성**   
+
+    ```
+    CREATE TABLE EMPLOYEE_COPY
+    AS
+    SELECT EMP_ID,EMP_NAME,DEPT_TITLE,JOB_NAME FROM EMPLOYEE   
+    LEFT JOIN DEPARTMENT ON (DEPT_CODE = DEPT_ID)
+    LEFT JOIN JOB USING(JOB_CODE);
+    ```      
+          
+ ## ALTER H2   
+ 
+  - DDL의 한 종류로 CREATE로 정의된 내용을 수정할 때 사용
+  - <U>컬럼의 추가 삭제, 제약조건의 추가 삭제, 컬럼의 자료형 변경, 테이블명 컬   럼명 제약조건 이름 변경 등이 가능</U>      
+  
+  
+  1. **컬럼 추가**   
+  
+  ```
+  ALTER TABLE DEPT_COPY 
+  ADD(KNAME VARCHAR2(20));
+  ```      
+  ```
+  ALTER TABLE DEPT_COPY
+  ADD (HNAME VARCHAR2(20) DEFAULT ‘kh’);
+  ```     
+
+  2. **컬럼 수정**   
+  
+  '''
+  ALTER TABLE DEPT_COPY  
+  MODIFY DEPT_ID CHAR(3)    
+  MODIFY DEPT_TITLE VARCHAR2(30)
+  '''   
+    
+    
+  3. **제약조건 확인**   
+  
+  '''
+  SELECT UC.CONSTRAINT_NAME, -- 제약조건 이름
+  UC.CONSTRAINT_TYPE, -- 제약조건 타입
+  UC.TABLE_NAME, -- 테이블이름
+  UCC.COLUMN_NAME, -- 컬럼이름
+  UC.SEARCH_CONDITION -- 제약조건 설명
+  FROM USER_CONSTRAINTS UC
+  JOIN USER_CONS_COLUMNS UCC ON (UC.CONSTRAINT_NAME =
+  UCC.CONSTRAINT_NAME)
+  WHERE UC.TABLE_NAME = ‘DEPT_COPY’; -- 테이블명(반드시 대문자로 기입)
+  '''   
+       
+        
+  4. **제약조건 추가**   
+  
+  '''
+  ALTER TABLE DEPT_COPY
+  ADD CONSTRAINT DCOPY_ID_PK PRIMARY KEY(DEPT_ID)  --CONSTRAINT:  제약조건
+  ADD CONSTRAINT DCOPY_TITLE_UNQ UNIQUE(DEPT_TITLE)
+  MODIFY HNAME(컬럼명) CONSTRAINT DCOPY_HNAME_NN(제약이름) NOT NULL;  
+  '''     
+ 
+  **NOT NULL은 은 MODIFY로 로 추가**   
+      
+        
+  5. **컬럼 삭제**   
+  
+  '''
+  ALTER TABLE DEPT_COPY
+  DROP COLUMN KN
+  ```  
+  *하고 있는 경우 컬럼삭제 불가*  
+  
+    - DROP COLUMN 컬럼명 CASCADE CONSTRAINT를 를 하는 경우 제약조건을 삭제하고 컬럼삭제   
+        
+      
+  6. **제약조건 삭제**     
+  
+   ```
+   ALTER TABLE DEPT_COPY
+   DROP CONSTRAINT DCOPY_ID_PK
+   DROP CONSTRAINT DCOPY_TITLE_UNQ
+   MODIFY HNAME NULL;
+   ```   
+   
+   - NOT NULL은 은 MODIFY로 로 삭제
+   - 삭제 시 시 제약조건 이름으로 삭제   
+   
+  7. **컬럼 이름 변경**   
+     
+  ```
+  ALTER TABLE DEPT_COPY
+  RENAME COLUMN HNAME TO KHNAME;
+  ```   
+    
+  8. **제약조건 이름 변경**   
+     
+  ```
+  ALTER TABLE DEPT_COPY
+  RENAME CONSTRAINT SYS_C008124 TO DID_NN;
+  ALTER TABLE DEPT_COPY
+  RENAME CONSTRAINT SYS_C008125 TO LID_NN;
+  ```   
+    
+  9. **테이블 이름 변경**   
+     
+  ```
+  ALTER TABLE DEPT_COPY
+  RENAME TO ALTER_TEST;
+  ```   
+        
+        
+ ## DROP H2   
+ 
+   - DDL의 한 종류로 CREATE로 정의된 객체를 삭제할 때 사용    
+      
+   -테이블 삭제    
+   
+ ```
+ DROP TABLE ALTER_TEST;
+ ```     
+       
+       
+   - 제약조건으로 다른 테이블에서 참조하고 있다면 삭제 안됨   
+   
+ ```
+ DROP TABLE ALTER_TEST CASCADE CONSTRAINT;
+ ```   
+      
+   → 테이블을 삭제 하면서 연결된 제약조건도 모두 삭제   
+   
+   - 사용자 삭제(관리자 계정으로 접속)     
+   
+ ```
+ DROP USER test01;
+ ```   
+      
+  - **USER 삭제 시 시 내부의 테이블을 포함한 데이터들이 모두 삭제**   
+   
+   
+ DML
+-------   
+
+## DML(DATA MANIPULATION LANGUAGE) H3   
+   - 데이터 조작 언어
+   - 테이블에 값을 삽입,수정,삭제 하는 역할
+   - INSERT,UPDATE,DELETE   
+   
+   
+## INSERT H2   
+
+   - 테이블에 새로운 행을 추가하는 구문
+   - 추가할 때 마다 테이블의 행 개수가 증가   
+   
+ *표현식*   
+ 
+   1. INSERT INTO 테이블명( 컬럼명1, 컬럼명2,…) VALUES( 값1, 값2,…..)   
+      - 값을 넣을 컬럼명 입력후 입력한 순서에 맞춰서 값 입력
+      
+   2. INSERT INTO 테이블명 VALUES( 값1, 값2,….)
+      - 테이블 생성시 만든 컬럼 순서대로 모든 값을 입력
+      - 컬럼수와 입력한 값 수가 안 맞으면 **에러발생**   
+      
+  - INSERT에 VALUES 대신 서브 쿼리 사용가능
+  ```
+  INSERT INTO EMP_01(
+  SELECT EMP_ID,
+  EMP_NAME,
+  DEPT_TITLE
+  FROM EMPLOYEE
+  LEFT JOIN DEPARTMENT
+  ON (DEPT_CODE=DEPT_ID)
+  );
+  ```   
+  
+  - **INSERT ALL**   
+   - INSERT시 사용하는 서브쿼리의 테이블이 동일한 경우, 2개이상의 테이블에 INSERT ALL을 이용해    한번에 삽입가능
+   - 단, **서브쿼리의 조건절이 같아야한다.**   
+   
+   EX)
+   ```
+   CREATE TABLE EMP_02
+   AS
+   SELECT EMP_ID,
+   EMP_NAME,
+   DEPT_CODE
+   FROM EMPLOYEE
+   WHERE 1 = 0;
+
+   CREATE TABLE EMP_03
+   AS
+   SELECT EMP_ID,
+   EMP_NAME,
+   JOB_CODE
+   FROM EMPLOYEE
+   WHERE 1 = 0;
+
+   INSERT ALL
+   INTO EMP_02 VALUES(EMP_ID,EMP_NAME,DEPT_CODE)
+   INTO EMP_03 VALUES(EMP_ID,EMP_NAME,JOB_CODE)
+   SELECT EMP_ID,EMP_NAME,DEPT_CODE,JOB_CODE
+   FROM EMPLOYEE
+   WHERE SALARY > 3000000;
+   ```   
+   
+## UPDATE H2
+   - 테이블에 기록된 컬럼의 값을 수정하는 구문
+   - 테이블의 전체 행 개수 변화 없음   
+   
+ *표현식* 
+   - UPDATE 테이블명 SET 컬럼명1 = 변경값1, 컬럼명2 = 변경값2 WHERE 조건식
+   - 조건식을 적지 않는 경우 **데이블 전체 데이터 일괄 변경** 이므로 주의할 것   
+ 
+ ```
+ CREATE TABLE DEPT_COPY
+ AS
+ SELECT * FROM DEPARTMENT;
+ ```   
+ 
+ - 서브쿼리 이용가능
+ ```
+ CREATE TABLE EMP_SALARY
+ AS
+ SELECT EMP_ID,
+ EMP_NAME,
+ SALARY,
+ BONUS FROM
+ EMPLOYEE;
+ ```   
+ 
+ 
+## MERGE H2   
+   - 구조가 같은 두 개의 테이블을 하나로 합치는 기능
+   - 두 테이블에서 지정하는 조건의 값이 존재할시 UPDATE    조건의 값이 없으면 INSERT가 된다.   
+   
+```
+MERGE INTO
+M_TEST01 USING M_TEST02 ON (M_TEST01.ID = M_TEST02.ID)
+WHEN MATCHED THEN -- 위의 ON이 이 TRUE 면
+UPDATE SET -- UPDATE 실행
+M_TEST01.NAME = M_TEST02.NAME
+WHEN NOT MATCHED THEN -- 위의 ON이 이 FALSE 면
+INSERT -- INSERT 실행
+VALUES(M_TEST02.ID, M_TEST02.NAME);
+```   
+
+## DELETE H2   
+   - 테이블의 행을 삭제하는 구문
+   - 테이블의 전체 행 개수 감소    
+   
+  표현식   
+  
+  - DELETE FROM 테이블명 WHERE 조건식
+  - 조건식을 적지 않는 경우 **테이블 전체 데이터가 삭제** 되므로 주의할 것   
+  
+  - FOREIGN KEY 제약조건이 설정되어 있는 경우 삭제 불가능     (ON DELETE RESTRICTED 인 인 경우)
+  - 제약조건을 비활성화 후 후 삭제 가능   
+  
+  
+  
+  
+
+
+   
+   
+   
+   
+   
+   
+   
+   
+   
+ OBJECT  
+ ---------   
+ 
+  1. **VIEW**   
+  
+    - SELECT 쿼리의 실행 결과를 화면에 저장한 논리적인 가상 테이블
+    - 테이블과 다르게 실질적으로 데이터를 저장하고 있지 않지만, 사용자는 테이블을 사용하는 것과 동일하게 사용 가능
+    - 관리자 계정에 VEIW생성.   
+    
+  ```
+  GRANT CREATE VIEW TO KH;
+ 
+  ```   
+  
+    
+    
+   - 해당 계정에서 뷰 생성하기   
+   
+   
+   ```
+   CREATE VIEW EMP_VIEW
+   AS
+   SELECT EMP_ID, EMP_NAME, EMAIL,PHONE FROM EMPLOYEE;
+   SELECT * FROM EMPLOYEE;
+   ```   
+   
+   **원본 테이블을 바꾸면 뷰의 데이터도 같이 바뀐다.**    
+   
+  
+   - VIEW-DML 명령어 조작이 불가능한 경우   
+   
+       1. 뷰 정의에 포함되지 않은 컬럼을 조작하는 경우   
+       2. 뷰에 포함안된 컬럼중 베이스가되는 테이블 컬럼이 NOT NULL제약조건이 지정된 경우   
+       3. 산술 표현식으로 정의된 경우   
+       4. JOIN을 이용해 여러 테이블을 연결한 경우   
+       5. DISTINCT를 포함한 경우   
+       6. 그룹함수나 GROUP BY절을 포함한 경우   
+      
+  - VIEW 옵션      
+  
+    1. CREATE OR REPLACE
+       - 생성한 뷰가 없으면 새로 생성하고, 이미 존재하면 갱신   
+   
+    2. FORCE/NOFORCE   
+    
+       - FORCE옵션은 기본 테이블이 존재하지 않더라도 뷰를 생성   
+      
+    3. WITH CHECK OPTION    
+    
+       - 옵션을 설정한 컬럼의 값은 수정 불가   
+       
+    4. WITH READ ONLY   
+    
+       - 뷰에 대해 조회만 가능하고, 삽입,수정,삭제는 하지 못함   
+       
+      
+## **SEQUENCE** H2
+
+- 순차적으로 정수 값을 자동으로 생성하는 객체로, 자동 번호 발생기의 역할   
+
+   ```
+   CREATE SEQUENCE 시퀀스이름
+   ```   
+
+  1. START WITH 숫자  : 처음 발생시킬 시작 값(기본1)   
+  2. INCREMENT BY 숫자 : 다음 값에 대한 증가 치(기본1)   
+  3. MAXVALUE 숫자|NOMAXVALUE : 최대값 지정(10^27-1까지 가능)   
+  4. MINVALUE 숫자|NOMINYALUE : 최소값 지정 (-10^26까지가능)   
+  5. CYCLE/NOCYLE: 시퀀스 최대값 도달 시 CYCLE은 START WITH 값으로 되돌아가고 NOCYCLE은 에러   
+  6. CAHCE/NOCAHCE : 메모리상에서 시퀀스값 관리(기본20)   
+  
+  - 시퀀스는 수정이 가능하나 단, **시작값은 수정이 불가능**   
+  
+     ```
+     alter sequence seq_TEST
+     INCREMENT BY 10
+     MAXVALUE 1000
+     NOCYCLE
+     NOCACHE;
+     ```   
+     
+  
+  - NEXTVAL, CURRVAL 사용 가능 경우   
+  
+     1. 서브쿼리가 아닌 SELECT 문
+     2. INSERT 문의 SELECT절
+     3. INSERT 문의 VALUE 절
+     4. UPDATE 문의 SET 절   
+     
+  
+  
+## INDEX H2   
+
+
+  - SQL 명령문의 처리속도를 향상시키기 위해서 컬럼에 대해 생성하는 오라클 객체로 내부구조는 B*트리 형식으로 구성   
+  
+
+- INDEX의 장점   
+
+  - 검색 속도가 빨라지고 시스템에 걸리는 부하를 줄여서 시스템 전체 성능 향상   
+  
+  
+- INDEX의 단점   
+
+   - 인덱스를 위한 추가 저장공산 필요
+   - 인덱스 새성 시간 필요
+   - 데이터 변경작업이 자주일어나는 경우 오히려 성능 저하    
+   
+ - INDEX 생성하기   
+ 
+   ```
+   CREATE INDEX EMP_IND ON
+   EMPLOYEE(EMP_NAME,EMP_NO,HIRE_DATE);
+   (자주 사용하는 검색일 시 시 인덱스로 미리 생성)
+   ```   
+   
+   ```
+   SELECT EMP_NAME,EMP_NO,HIRE_DATE FROM EMPLOYEE;
+   F10을 을 눌러서 사용된 OBJECT_NAME을 보면 생성한 INDEX를 사용한것 확인 가능
+   ```   
+   
+  
+## SYNONYM H2     
+
+
+  - 사용자가 다른 사용자의 객체를 참조할 떄 사용자ID.테이블명 으로 표기
+  - 길게 표현되는 것을 동의어(SYNONYM)으로 설정하고 간단하게 사용 가능   
+  
+  
+- 동의어 종류      
+
+  1. 비공개 동의어      
+  
+      - 객체에 대한 접근권한을 부여받은 사용자가 정의한 동의어
+      - 해당 사용자만 사용      
+      
+      
+  2. 공개 동의어      
+  
+      - 권한을 주는 사용자가 정한 동의어
+      - 모든 사용자가 사용할수 있음      
+      - 보통 관리자 계정에서 생성   
+ 
+  **동의어 생성을 위한 권한이 필요함**
+    - 관리자에서 GRANT CREATE SYNONYM TO KH;   
+    
+- 생성   
+
+   ```
+   CREATE SYNONYM 동의어이름 FOR 테이블명;
+   ```   
+   
+   공개 동의어 생성(SYSTEM 계정)   
+   
+   ```
+   CREATE PUBLIC SYNONYM DEPT FOR KH.DEPARTMENT;
+   KH 계정
+   SELECT * FROM DEPT;
+   ```
+   - SYSTEM이 이 만들었지만 KH 계정 사용 가능하고,타계정에서도 권한만 있으면 사용 가능      
+   
+   
+
+
+## PL/SQL H2   
+
+
+   - 오라클 자체에 내장되어 있는 절차적 언어
+   - SQL의 단점을 보완하여 SQL 문장내에서 변수의 정의,조건처리,반복처리등을 지원   
+   
+  
+    ```
+    DECLARE
+    선언부    : 선택사항, 변수나 상수를 선언
+    BEGIN
+    실행부 : 선택사항
+    EXCEPTION
+    예외처리부 :
+    END;
+    /
+    ```   
+    
+
+  1. PL/SQL의 변수의 종류   
+  
+  
+       - 일반(스칼라변수)변수 : 기존 SQL 자료형과 유사값을 대입(:=)하고 변경하여 사용이 가능.
+       - 상수 : 일반변수와 유사하나 CONSTANT 키워드가 자료형 앞에 붙고 선언시 값을 할당해 주어야함.   값 지정하면 변경 불가능
+       - %타입 변수: %변수는 불러오는 컬럼의 타입을 불러올수 있다.
+
+  2. pl/sql 선택문   
+  
+     - pl/sql의 모든 문장들은 기술한 순서대로 순차적으로 수행
+     - 문장을 선택적으로 수행하려면 선택문을 사용
+      -선택문 종류
+       -if
+       -if
+       -if
+
+       
+     
+   
+
+## TRIGGER   
+   
+   - 데이터베이스가 미리 정해 놓은 조건을 만족하거나 어떠한 동작이 수행되면 자동적으로     수행되는 행동(TRIGGER: 연쇄반응)
+   - 트리거는 테이블이나 뷰가 INSERT, UPDATE, DELETE 등의 DML문에 의해     데이터가 입력,수정,삭제 될 경우 자동으로 실행  
+   - 실시간으로 처리를 가능하게 해준다.   
+   
+```
+CREATE TABLE TRI_MEMBER
+AS
+SELECT EMP_ID,EMP_NAME,SALARY 
+FROM EMPLOYEE WHERE 1=0;
+   
+   
+CREATE TABLE TRI_DEL_MEMBER(
+    EMP_ID NUMBER,
+    EMP_NAME VARCHAR2(20),
+    OUT_DATE DATE
+);   
+INSERT INTO TRI_MEMBER VALUES(100,'최종은',70000000);   
+INSERT INTO TRI_MEMBER VALUES(101,'이다현',69000000);   
+INSERT INTO TRI_MEMBER VALUES(102,'박태규',90000000);   
+INSERT INTO TRI_MEMBER VALUES(103,'김병호',72000000);   
+INSERT INTO TRI_MEMBER VALUES(104,'이윤수',20000000);   
+SELECT * FROM TEI_MEMBER;  
+  
+CREATE OR REPLACE TRIGGER MEM_DEL_TRG
+AFTER DELETE    --트리거 동작 시점
+ON TRI_MEMBER
+FOR EACH ROW
+BEGIN
+    INSERT INTO TRI_DEL_MEMBER VALUES(
+    :OLD.EMP_ID, :OLD.EMP_NAME,SYSDATE
+    );                --삭제된 사번, 삭제된 이름,SYSDAT
+END;  
+
+```   
+
+__Trigger 구성 요소__   
+
+1. 트리거 실행 시점  
+   - 트리거 실행 시점을 이벤트 전(before)이나 후(after)로 지정   
+2. 트리거 이벤트   
+   - 사용자가 어떤 dml(insert,update,delete)문을 실행했을 때 트리거를     발생시킬 것인지를 결정   
+3. 몸체   
+   - 트리거 동작 로직으로 begin~ end 안에 작성   
+4. 유형   
+   - 행 레벨 트리거: dml에 의해서 여러 개의 행이 변경되면 각행이 변경될 떄마다    트리거를 발생시키는 방법  
+   - 문장 레벨 트리거: DML을 실행하면 트리거가 한번 발생   
+   - **for each row 준장이 정의되어 있으면 행 레벨 트리거, 생략되어 있으면 문장 레벨트리거**    
+   
+__TRigger 바인드 변수__   
+   - :new 새로 입력된 데이터(insert,update시 존재)  
+   - :old 기존 데이터  
+     
+   - :new.컬럼명 sql반영 후의 컬럼 데이터  
+   - :old.컬럼명 sql반영 전의 컬럼 데이터
+   - delete 경우 삭제이기때문에 old만 사용가능
+
+```
+INSERT INTO TRI_DEL_MEMBER VALUES(
+:OLD.EMP_ID,:OLD.EMP_NAME,SYSDATE
+);
+```   
+
+   
+   
+
+--- 3/16일자
+
+## 데이터딕셔너리 H2   
+
+   - 자원을 효율적으로 관리하기 위한 다양한 정보를 저장하는 시스템 테이블   
+   - 사용자가 테이블을 생성하거나, 사용자변경등의 작업을 할 때 데이터베이스        서버에 의해 자동으로 갱신되는 테이블     
+   
+1. __데이터딕셔너리 종류__     
+
+   1. DBA_XXXXX   
+      - DB 관리자만 접근이 가능한 객체 등의 정보를 조회
+   2. ALL_XXXXX      
+      - 자신의 계정이 소유하거나 권한을 부여받은 객체 등에 관한 정보 조회
+   3. USER_XXXXX     
+      - 자신의 계정이 소유한 객체 등에 관한 정보 조회     
+      1. USER_의 종류들   
+      
+         - SELECT * FROM USER_TABLES;   
+         - SELECT * FROM USER_VIEWS;   
+         - SELECT * FROM USER_SEQUENCES;   
+         - SELECT * FROM USER_TRIGGER;   
+         - SELECT * FROM USER_CONS_COLUMNS;  --모든 테이블의 컬럼의 제약조건을 볼수 잇다.   
+         - SELECT * FROM USER_CONSTRAINTS; -- 제약조건에 대한 정보를 자세히 볼수 있다.   
+         - SELECT * FROM USER_COL_COMMENTS; -- COMMENTS의 정보를 알수 있다.    
+    
+
+
+
+
+
+
+=========================
 
 
 # html
