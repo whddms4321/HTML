@@ -4475,6 +4475,81 @@ __UML(Unified Modeling Language)__
     
 
 
+
+---
+
+
+# framwork
+
+__Framwork__
+
+  - 개발자가 소프트웨어를 개발함에 있어
+  
+  
+  1. Framwork의 특징
+  
+    - 개발자가 따라야 하는 가이드를 제공
+    - 개발할 수 있는 범위가 정해져 있음
+    - 개발자를 위한 다양한 도구, 플러그인을 지원
+    
+  |장점|단점|
+  |:--:|:--:|
+  |개발 시간 줄일수 있음 <br> 정형화 되어 있어 일정 수준 이상의 품질을 기대할 수 있음 <br> 유지보수가 쉬움|너무 의존하는 경우 개발자들의 능력이 떨어져 스스로 직접 개발하는것이 어려워 짐 <br> 습득에 걸리는 시간이 필요함|
+  
+  
+  2. Framwork 종류
+  
+  <table>
+    <tr>
+      <th>구분</th>
+      <th>설명</th>
+      <th>종류</th>  
+  </tr>
+  <tr>
+    <td>영속성프레임워크</td>
+    <td>데이터의 저장,조회,변경,삭제를 다루는 클래스 및 설정 <br> 파일들을 라이브러리화 하여 구현한 프레임워크</td>
+    <td>Mybatis <br> Hibernate <td>
+  </tr>
+  <tr>
+    <td>자바 프레임워크</td>
+    <td>JAVA EE를 통한 웹 어플리케이션 개발에 초점을 맞추어 <br> 필요한 요소들을 모듈화 하여 제공하는 프레임워크</td>
+    <td>spring <br> 전자정부표준 <br> Struts </td>
+  </tr>
+  <tr>
+    <td> 화면 구현 프레임워크 </td>
+    <td>Front-End를 보다 쉽게 구현할 수 있게 틀을 제공하는 프레임워크 </td>
+    <td>Bootstrap <br> Foundation <br> MDL </td>
+  </tr>
+  <tr>
+      <td>기능 및 지원 프레임워크</td>
+      <td> 특정 기능이나 업무 수행에 도움을 줄 수 있게 기능을 <br> 제공하는 프레임워크 </td>
+      <td> Log4j </td>
+      <td> JUnit5 </td>
+      </tr>    
+  </table>
+
+
+# mybatis
+
+__Mybatis__
+
+<!img>(imgs/Mybatis.jpg)
+
+  1. ibatis와 Mybatis
+  
+    - Apache Project에서 ibatis를 운영하던 팀이 google팀으로 이동하면서Mybatis로 이름을 변경
+    - Mybatis는 기존 ibatis의 한계점이었던 동적 쿼리와 어노테이션 처리를 보강
+    - ibatis는 현재 비활성화 상태
+    
+  1. Mybatis 에서 사용하는 xml 파일
+  
+  |mybvatis-config.xml|mapper.xml|
+  |:--:|:--:|
+  |Mybatis를 이용하기위한 설정들이 저장되어 있는 파일 <br> xml파일 상단에 mybatis-config 파일이라는 선언 <br>
+
+
+
+
 ---
 
 # 세미 프로잭트
