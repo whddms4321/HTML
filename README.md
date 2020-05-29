@@ -79,7 +79,7 @@
 1. 고화질로 이미지로 변환해주는 사이트: https://waifu2x.booru.pics/
 1. 무료이미지 지원 사이트: https://www.gettyimageskorea.com/
 1. 배경 날려주는 사이트: https://www.remove.bg/ko
-
+1. maven 추가하는 사이트: https://mvnrepository.com/
 </details>
 
 
@@ -4588,9 +4588,48 @@ __Mybatis__
   |separator|반복되는 객체를 나열할 떄 구분하기 위한 구분자|
   |close|마지막 반복 시 포함할 닫는 문자열|
   
-  
+---
+
+스프링 설치법
+
+1. C:\apache-maven-3.5.3에 repository 폴더를 만든다
+2. C:\apache-maven-3.5.3\conf에 setting을 열고  <br> <localRepository>/path/to/local/repo</localRepository> 를 찾는다.
+3.  <localRepository>/path/to/local/repo</localRepository>를 하나 복사해서 그곳 사이에 respository의 경로를 복사해 넣는다.
+4. spring>sts-bundle폴더에서 STS 문서파일을 실행,  C:\Program Files\Java\jre1.8.0_144\bin 경로를 복사해서 <br>  org.springsource.sts.ide 아래에 -vm C:\Program Files\Java\jre1.8.0_144\bin\javaw.exe를 정확히 기입한다.
+5. 그후 STS 실행파일을 실행하여 workspace를 만들고 실행
+
+스프링 셋팅법
+1. window>preferences 에서 Maven>User Settings에서  UserSetting에서 아까 만졌던 marven의 setting을 경로 잡아준후 apply
+2. Team>ignored Resources에서 add 누르고 /*target/*을 추가해주고 apple
+3. 인코딩 5가지를 UTF-8로 설정해준다.(json,web에서 3개,  general에서 2개)
+4. Server에서 Runtime Environment에서 서버 삭제후 톰켓 8.5버전  설치
+5. Server생성 후 프로젝트는 Spring legacy Project으로 클릭, Templates에서 MVC Project를 선택 후 next,
+6. 뜨는 물음에 yes를 누르고 kh.or.iei로 만든다.
+7. 이제 project의 잡아진 기본 자바버전을 현재 사용하는 1.8로 바꿔야한다.
+8. pom.xml 파일을 실행후 Overview탭에서 자바버전을 1.8으로 바꾸고 org.springframework-version 를  <br> 5.0.6.릴리즈로 바꿔주면 자동설치된다.
+9. 이제 프로젝트 우클릭>properties를 누르고  Project Facets탭에서 Java의 버전을 1.8로 바꾸고 오른쪽에 <br> Runtimes 탭에 톰캣 서버를 체크
+10. pem.xml에서 Mavin에서 사용할 lib를 추가하기위해 Mavin사이트에서 spring-jdbc와 commons-dbcp를 검색해서 추가하고 <br> lib폴더에 jstl과 ojdbc6, taglibs 4개를 직접 추가해준다.(ojdbc6은 자동설치가 자주 에러가남)
+11. src/main/webapp/resouces 안에 New>spring Bean Configuration file 에서 applicationContext.xml파일 생성
+12. applicationContext.xml 에서 코드 추가
+
+```
+<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+	<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
+	<property name="url" value="jdbc:oracle:thin:@127.0.0.1:1521:xe"/>
+	<property name="username" value="mybatis"></property>
+	<property name="password" value="1234"></property>
+</bean>
+<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+	<property name="dataSource" ref="dataSource"></property>
+</bean>
+```
+
+13. repository폴더에 파일이 설치가 된지 확인해보고, index 만들고 서버 실행해보기
+
 
 ---
+
+
 # 세미 프로잭트
 
 __우리조는 농산물을 공동구매할 수 있는 웹사이트를 구현하였음__
