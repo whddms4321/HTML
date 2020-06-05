@@ -3351,8 +3351,8 @@ __jQuery 연결__
   - 파일 다운로드 연결(오프라인) : jQuery 혼페이지에서 js파일 다운로드   
   
 ```
-<script type=‘text/javascript’ src=‘http://code.jquery.com/jquery-
-버전.js’></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-
+3.3.1.js"></script>
 ```  
 
 ※ jQuery를 를 연결하지 않으면 스크립트 사용 시 시 에러가 발생
