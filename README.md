@@ -13,7 +13,8 @@
   - [DBMS](#dbms(database management system))   
   - [DDL](#ddl)   
   - [집합연산자](#집합연산자(set operator))   
-  - 
+  
+  
 [4.HTML](#html)   
   - [META](#meta)     
   - [SCRIPT](#script)        
@@ -22,7 +23,7 @@
   - [시멘틱 태그](#시멘틱-태그)     
   - [멀티미디어 태그](#멀티미디어-태그)      
   - [하이퍼링크 태그](#하이퍼링크-태그)       
-  - [폼 태그](#폼-태그)       
+  - [폼 태그](#폼-태그)         
 [5. CSS](#css)     
   - [선택자](#css-선택자)    
   - [텍스트 스타일](#텍스트-스타일)     
@@ -32,7 +33,7 @@
   - [여백 스타일](#여백-스타일)   
   - [애니메이션](#애니메이션)   
     
-[6. javascript](#javascript)   
+[6. javascript](#javascript)     
   - [개요](#개요)   
   - [배열](#배열)   
   - [함수](#함수)   
@@ -56,7 +57,10 @@
   - [JSP 내장객체들](#jsp-내장-객체들)    
   - [MVC 정의](#mvc-정의)   
   - [EL](#el)   
-  - [JSTL](#jstl)   
+  - [JSTL](#jstl)    
+  - [Filter](#filter)    
+  - [ajax](#ajax)   
+  
 
 [6.UML](#uml)   
 
@@ -4327,9 +4331,158 @@ response.sendRedirect("/error.html");
   |iniParam| 초기 파라미터를 조회|
   |pageContext pageContext 경로를 조회|
 
-  # jstl
+# jstl   
 
+__JSTL(JSP Standard Tag Library)__
 
+  - JSP에서 사용하는 커스텀 태그로, 공통으로 사용하는 코드의 집합을 사용하기 쉽게 태그화하여 표준으로 제공한 것
+    
+  사용 방식    
+    1. 라이브러리 등록
+    2. 선언 <%@ taglib uri=http://java.sun.com/jsp/jstl/core” prefiex=“c” %>
+    3. 사용 <c:out value=“${welcome}”/>
+    
+1. JSTL 태그 종류
+
+|종류|표기법|
+|:--:|:--:|
+|Core Tags| 변수와 url, 조건문, 반복문 등의 로직과 관련된 JSTL 문법 제공 <br> <%@ taglib url=“http://java.sun.com/jsp./jstl/core” prefix=“c” %>|
+|Formatting Tags| 메시지 형식이나 숫자, 날짜 형식과 관련된 포맷 방식을 제공 <br> <%@ taglib url=“http://java.sun.com/jsp./jstl/fmt” prefix=“fmt” %>|
+|Function Tags| trim, substring과 같은 문자열 처리 함수를 제공 <br> <%@ taglib url=“http://java.sun.com/jsp./jstl/function” prefix=“fn” %>|
+|XML Tags| 데이터의 XML 파싱 처리 등 XML 문서를 다루는 함수를 제공 <br> <%@ taglib url=“http://java.sun.com/jsp./jstl/xml” prefix=“x” %>|
+|SQL Tags| 페이지 내에서 DB를 연동하고, 쿼리를 실행할 수 있는 함수 제공 <br> <%@ taglib url=“http://java.sun.com/jsp./jstl/sql” prefix=“sql” %>|
+
+2. __core tags__
+
+  1. __<c:set>와 <c:remove>태그__ 
+  
+    - 변수를 선언하고 그 변수에 초기값을 대입하는 기능의 태그
+    - 자바 변수 선언 방식과 유사
+    - scope 속성을 이용하여 속성 저장 가능(설정하지 않는 경우 page임)
+    
+    - 자바 변수 선언 후 초기값 대입 =int num = 100
+    
+    - <c:set> 변수 선언 후 초기값 대입
+      <c:set var="num" value="100" scope="request"/>
+      
+  <c:set>사용법
+    
+    - 변수 타입을 별도 선언 x
+    - 초기값 반드시 입력
+    - <c:set>으로 선언한 변수는 EL식 안에서 사용 가능
+    - <c:set>으로 선언한 변수는 스크립틀릿 요소에서는 사용 불가
+    - 스크립틀릿에서 선언된 변수는 <c:set>에서 사용 가능
+    
+  ```
+  <% int num1=10, num2=20; %>
+  <c:set var=“sum” value=“<%= num1+num2 %>” />
+  ${sum}
+  ```
+  
+  <c:remove>
+    
+    - <c:set>을 이용해서 선언한 변수는 page, request, session, application영역에 속성으로 저장되기 때문에 이를 삭제하기 위한 태그
+  
+  ```
+  <c:remove var=“num” scope=“request” />
+  ```
+  
+  2. <c:out> 태그
+  
+    - <c:out>태그는 데이터를 출력할 때 사용하는 태그
+    - 특수 문자를 자동으로 이스케이프 시퀀스로 처리
+    
+  ```
+  <c:out value="글씨를 진하게 하려면<b>찐</b> 태그를 사용하면 됨" escapseXml="false" />
+  ```
+  
+  3. __<c:if> 태그__
+  
+    - 자바의 if문과 비슷한 역할
+    - <c:if>태그에서 조건식은 test라는 속성의 값으로 지정하며 반드시 EL형식
+    
+  ```
+  <c:if test="${num1 > num2}">
+                num1이 더 큽니다.
+  </c:if>
+  ```
+  
+  4. <c:choose>
+  
+    - 자바의 switch(if ~ else if)문과 비슷한 역할을 하는 태그
+    - <c:when>,<c:otherwise> 태그와 함께 사용된느데, 각각 switch 문의 case와 default절과 비슷한 역할을 수행
+    
+  ```
+  <c:choose>
+    <c:when test=“${num == 0}”>
+    num은 0 입니다.
+    </c:when>
+    <c:when test=“${num == 1}”>
+    num은 1 입니다.
+    </c:when>
+    <c:otherwise>
+    num은 0도 1도 아닙니다.
+    </c:otherwise>
+  </c:choose>
+  ```
+  
+  5.  __<c:forEach>태그__   
+  
+    - 자바의 for,eachans에 해당하는 기능을 제공
+    
+  |속성|설명|
+  |:--:|:--:|
+  |items|반복할 객체 명 (Collection 객체)|
+  |begin|반복이 시작할 요소 번호(0~n)|
+  |end|반복이 끝나는 요소 번호|
+  |step|반복할 횟수 번호|
+  |var|현재 반복 횟수에 해당하는 변수의 이름|
+  |varStatus|현재 반복에 해당하는 객체의 요소|
+  
+    varStatus 속성
+  |속성|설명|
+  |:--:|:--:|
+  |current|현재 반복 횟수|
+  |index|반복라운드의제로기반인덱스(0~n-1)|
+  |count|반복라운드의1기반 인덱스(1~n)|
+  |first|현재 라운드가 반복을 통한 첫번째임을 의미|
+  |last|현재라운드가반복을통한 마지막번째임을의미|
+    
+  ```
+  <c:forEach items=“${bookList}” var=“book” varStatus=“status”>
+  <tr>
+  <td><c:out value=“${status.count}” /></td>
+  <td><c:out value=“${book.name}” /></td>
+  </tr>
+  </c:forEach>
+  ```
+  
+  6. <c:Tokens>
+  
+    - 문자열에 포함된 구분자를 통해 토큰을 분리해서 반복 처리
+    - items 속성에는 토큰을 포함하는 문자열, delims속성에는 토큰 구분자를 기술
+  
+  ```
+  <c:forTokens items=“yellow blue pink” var=“color” delims=“ ”>
+  ${color} <br>
+  </c:forTokens>
+  ```
+  
+  7. <c:url>
+  
+    - url 경로를 생성하고, 해당 url의 param속성을 선언하여 쿼리스트링을 정의할 수 있는 태그
+    - 쿼리스트링을 미리 정의하여 제어
+    
+  ```
+  <c:url var=“url” value=“/jstl1.jsp”>
+  <c:param name=“name” value=“abc” />
+  </c:url>
+  <a href=“${url}”>JSTL페이지로 이동</a>
+  ※ == <a href=“/jstl1.jsp?name=abc”>JSTL페이지로 이동</a>과 동일
+  ```
+  
+  
+  
 # filter
 
   - 클라이언트와 서버 사이에서 request와 response 객체를 필터가 먼저 받아 사전/사후작업등 공통적으로 필요한 부분을 처리하는 것
