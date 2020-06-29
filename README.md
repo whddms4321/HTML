@@ -59,9 +59,11 @@
   - [EL](#el)   
   - [JSTL](#jstl)    
   - [Filter](#filter)    
-  - [ajax](#ajax)   
+  - [ajax](#ajax)      
+  - [JSON과 XML](#json과-xml)
+  - [jQuery ajax](#jquery-ajax)   
   
-
+  
 [6.UML](#uml)   
 
 
@@ -4500,7 +4502,7 @@ __Filter interface의 메소드__
 
 # ajax
 
-  - 서버로부터 데이터를 가져와 전체 페이지를 새로 고치지 않고 일부만 로드할 수 있게 하는 기법으로 비등기식  요청을 보내는데 필요한 기술
+  - 서버로부터 데이터를 가져와 전체 페이지를 새로 고치지 않고 일부만 로드할 수 있게 하는 기법으로 <br> 비동기식 요청을 보내는데 필요한 기술
   - AJAX:Asynchronous JAVAScript And XML
   
 __ajax 장단점__  
@@ -4514,39 +4516,175 @@ __ajax 장단점__
   
 __동기식 처리모델__
 
-  - 페이지가 로드 되는 동안 브라우저는 script문이 실행되면 그 실행이 종료될때 까지 기다렸다가 종료되면 나머지 페이지를 로드하는 방식
+  - 페이지가 로드 되는 동안 브라우저는 script문이 실행되면 그 실행이 종료될때 까지 <br> 기다렸다가 종료되면 나머지 페이지를 로드하는 방식
   
 __비동기식 처리모델__
 
-  - 페이지가 로드 되는 동안 브라우저는 먼저 서버데이터 요청 script문을 실행 한 후 나머지 페이지를 계속   로드하고 페이지와 상호작용을 처리하며, script 요청 데이터를 기다리지 않는다. 그리고 요청데이터가 도착하면 그때 이벤트가 발생하면서    지정된 함수가 호출되어 실행되는 방식
+  - 페이지가 로드 되는 동안 브라우저는 먼저 서버데이터 요청 script문을 실행 한 후 나머지 페이지를 계속 <br> 로드하고 페이지와 상호작용을 처리하며, script 요청 데이터를 기다리지 않는다. 그리고 요청데이터가 <br> 도착하면 그때 이벤트가 발생하면서 지정된 함수가 호출되어 실행되는 방식
+
+__Javascript ajax__
   
-__처리 절차__
-...
-
-__XMLHttpRequest__
-
-  - 비동기식으로 서버에 요청(Request)을 보내기 위한 객체로 요청 및 응답을 처리
+  1. 처리 절차
   
-__속성__
-...
+    - script문에 요청을 위한 XMLHttprequest 객체 생성
+    - 서버의 응답을 처리할 함수 생성 및 지정 -> onreadystatechange에 함수 지정
+    - open메소드로 요청할 방법 및 요청할 대상(Server)선정 -> 요청메소드,요청주소,동기/비동기 설정
+    - send메소드로 대상(Server)에 전송 -> post일때 파라미터 값 설정/get 일때 매개변수 없음
+    - 응답상태에 따른 처리
+    
 
-__JSON과 XML__
+  2. XMLHttpRequest
 
-  1)JSON
-    - javascript object notation의 약자로 자바스크립트 객체를 표현하기 위한 표기법으로 각언어별로 객체 표현   방법이 달라서 통일하기 위해 사용      형식
-   {key1:value1,key2:value2,key3:value3} 
-  2) XML
-    - Extensible Markup Language의 약자로 HTML과 매우 비슷한 문자 기반의 마크업 언어로 사람과 기계가 동시에 읽기 편한 구조로 되어있음
-    형식
-    <태그명1>값1</태그명1>
-    <태그명2>값2</태그명2>
-    <태그명3>값3</태그명3>
+    - 비동기식으로 서버에 요청(Request)을 보내기 위한 객체로 요청 및 응답을 처리
+
+  속성
+  |속성명|내용|
+  |:--:|:--:|
+  |onreadystatechange|readyState속성이 변경될 때 호출되는 메소드를 저장하는 변수|
+  |readyState|객체의 상태를 저장하는 변수|
+  |responsetext|응답 결과를 문자열로 저장하는 변수|
+  |responseXML|응답 결과를 XML data로 저장하는 변수|
+  |status|전송/응답 결과를 저장하는 변수(코드값)|
+  |statusText|전송/응답 결과를 저장하는 변수(문자열)|
   
-# jQuery jajx
+  readyState 속성 값
+  |속성명|내용|
+  |:--:|:--:|
+  |0|요청이 시작되지 않은 상태/open메소드가 호출되지 않음|
+  |1(loading)|서버와 접속된 상태/send메소드가 호출되지 않음|
+  |2(loaded)|send메소드가 호출되고 헤더는 도착하지 않은 상태|
+  |3(interactive)|일부 데이터를 받은 상태|
+  |4(completed)|요청을 완료하고 응답하는 상태|
 
-$.ajax()의 주요 속성
+  status 속성 값
+  |속성명|내용|
+  |:--:|:--:|
+  |200(ok)|요청 성공|
+  |404|페이지 없음|
+  |500|서버 오류 발생|
+  
+  3. __ajax 사용하기__
+  
+    1. XMLHttpRequest 객체 생성
+    
+      - IE7 이상, safari,firefox,opera,chrome <br> var httpRequest = new XMLHttpRequest();
+      - IE6 이하 <br> var httpRequest = new ActiveXObject(Microsoft.XMLHTTP);
+      
+    2. 응답 처리 함수 설정
+    
+      - XMLHttpRequest객체 생성 후 속성값에 함수를 저장 
+      
+    ```
+    var httpRequest = new XMLHttpReuqest();
+    httpRequest.onreadystatuschange = 실행할 함수명; 
+    또는 
+    httpRequest.onreadystatuschange = function(){
+      처리 로직
+    }
+    ```
+      
+    3. 요청 대상 설정/ 요청 처리  
+    
+      - XMLHttpRequest객체 생성 후 open메소드로 요청대상 설정 <br> var httpRequest = new XMLHttpRequest();   
+        //요청대상 설정    
+        httpRequest.open(전송방법,요청페이지,동기식/비동기식설정);   
+        //요청 처리   
+        httpRequest.send("param값");   
+        
+        -> send시 param값은 post인경우에는 필수, get인경우에는 요청페이지에서 처리 가능
+        
+    4. 응답처리
+    
+      - XMLHttpRequest객체 생성 후 속성값으로 응답 처리(text)
+      
+    ```
+    var httpRequest = new XMLHttpRequest();
+    httpRequest.onreadystatechange = function(){
+      if(httpRequest.readyState ==4){//요청이 완료되었고
+        if(httpRequest.status==200){//정상적으로 결과가 수신되었을 때
+          //서버에서 보내준 데이터를 자바스크립트 변수에 저장
+          var value= httpRequest.responseText;
+          //서버에서 보내준 데이터를 이용하여 HTML페이지 변경
+        }
+      }
+    }
+    ```
+    
+      - XMLHttpRequest객체 생성 후 속성값으로 응답 처리(XML)
+    
+    ```
+    var httpRequest = new XMLHttpRequest();
+    httpRequest.onreadystatechange = function(){
+      if(httpRequest.readyState == 4){//요청이 완료되었고
+        if(httpRequest.status==200){//정상적으로 결과가 수신되었을 때
+          //서버에서 보내준 데이터를 자바스크립트 변수에 저장
+          var value = httpRequest.responseXML;
+          //XML에서 원하는 데이터만 추출하는 법
+          var xml = value.getElementsByTagName(“태그명”);
+          }
+       }
+    }
+    ```
+    
 
+  # json과 xml
 
+    1)JSON
+      - javascript object notation의 약자로 자바스크립트 객체를 표현하기 위한 표기법으로 각언어별로 <br>  객체 표현 방법이 달라서 통일하기 위해 사용 형식
+ ```     
+ {key1:value1,key2:value2,key3:value3} 
+ ```
+ 
+    2) XML
+      - Extensible Markup Language의 약자로 HTML과 매우 비슷한 문자 기반의 마크업 언어로 <br> 사람과 기계가 동시에 읽기 편한 구조로 되어있음
+  
+  ```
+  형식
+  <태그명1>값1</태그명1>
+  <태그명2>값2</태그명2>
+  <태그명3>값3</태그명3>
+  ```
+  
+  
+  # jquery ajax
+
+    - $.ajax()의 주요 속성
+    
+    1. url속성을 통해 전송할 url 주소 설정
+    2. data 속성을 톹ㅇ해 전달할 데이터 설정
+    3. 성공,실패 시 처리할 로직을 함수로 선언
+    4. 반드시 처리할 로직을 선언
+    
+
+    - $.ajax()의 주요 속성
+    
+  |속성명|내용|
+  |:--:|:--:|
+  |url| 데이터를 전송할 URL의 주소 설정|
+  |data| 서버에 전송할 데이터를 key:value 형식으로 설정(js객체)|
+  |datatype| 서버가 리턴하는 데이터의 타입 설정(text,xml,json,html)|
+  |type| 서버로 전송하는 형식 지정(GET, POST)|
+  |success| 통신 성공했을 때 처리할 로직을 함수로 작성|
+  |error| 통신 실패했을 때 처리할 로직을 함수로 작성|
+  |complete| 통신 시 반드시 실행할 로직을 함수로 작성|
+  
+  __$.ajax() 처리__
+  
+  ```
+  $.ajax({
+    url : “/test”, //1. 전달할 servlet url mapping
+    data : {id: “idid”}, //2. 전달할 데이터
+    type : “get”, //3. 전달 방식 지정
+    success : function(data){ //4-1. 성공 시 처리할 함수
+    //서버에서 보내준 데이터는 매개변수인 data로 받음
+    },
+    error : function(){ //4-2. 실패 시 처리할 함수
+    },
+    complete:function(){ //5. 반드시 처리할 절차
+    }
+  )}  
+  ```
+  
 ---
 
 
