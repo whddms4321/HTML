@@ -15,7 +15,7 @@
   - [DBMS](#dbms(database-management-system))      
   - [DDL](#ddl)      
   - [집합연산자](#집합연산자(set-operator))   
-  - [](#)   
+  - [Trigger](#trigger)      
   
 [3.JDBC](#jdbc)       
 [4.HTML](#html)   
@@ -414,189 +414,186 @@ __DDL__
    6. 스칼라 서브쿼리 : 상관커리이면서 결과값이 1개인 경우      
    
    
-      
-
+  __CREATE__
   
-   
-   
-   
+    - DDL의 한 종류로 테이블이나 인덱스,유저 등 다양한 데이터베이스 객체를 생성하는 구문
 
-
-   
-  ## **CREATE**   
+  1. __관리자 계정__   
   
-    : DDL의 한 종류로 테이블이나 인덱스,유저 등 다양한 데이터베이스 객체를 생성하는 구문
+    - 관리자는 DB의 생성과 관리를 담당하는 계정으로, 모든 권한과 책임을 가지고, 사용자 계정은 DB에 대해 <br> 질의,갱신,보고서 작성등을 수행할 수 있는 계정
 
-  1. 관리자 계정과 사용자 계정   
+  2. **사용자 생성**
   
-  : 관리자는 DB의 생성과 관리를 담당하는 계정으로, 모든 권한과 책임을 가지고, 사용자 계정은 DB에 대해      질의,갱신,보고서 작성등을 수행할 수 있는 계정
-
-  2. **사용자 생성**   
     - CREATE USER 사용자 이름 IDENTIFIED BY 비밀번호;
     - 생성 하더라도  아직 권한이 없기에 관리자 계정에서 권한을 부여해 줘야한다.
     
-  3. **GRANT(권한부여)**   
+  3. **GRANT(권한부여)**
+  
     - CONNECT: 사용자가 DB에 접속 가능하도록 하기위한 CREATE와 SESSION 권한이 있는 ROLE
     - RESOURCE: 객체를 생성할 수 있는 권한과 ISERT,UPDATE,DELETE의 권한을 가진 ROLE
     - EX) GRANT RESOURCE,CONNECT TO KH;
     
-  4. **테이블 생성**   
-    ```
-    CREATE TABLE 테이블명 (   
-     ID VARCHAR2(20),   
-     PW VARCHAR2(20),   
-     NAME VARCHAR2(40)   
-    );
-    ```   
-    테이블에 주석 달기   
-    ```
-    COMMENT ON COLUMNN 테이블명.컬럼명 IS '주석내용';
-    ```      
+  4. **테이블 생성** 
+  
+  ```
+  CREATE TABLE 테이블명 (   
+   ID VARCHAR2(20),   
+   PW VARCHAR2(20),   
+   NAME VARCHAR2(40)   
+  );
+  ```   
+  
+  테이블에 주석 달기   
+  
+  ```
+  COMMENT ON COLUMNN 테이블명.컬럼명 IS '주석내용';
+  ```      
     
 
- 5. **제약조건**       
+  5. **제약조건**       
 
-   - 테이블 작성 시 각 컬럼에 대한 기록에 대해 제약 조건 설정 가능   
-   - 데이터 무결성을 지키기 위한 제한된 조건      
+    - 테이블 작성 시 각 컬럼에 대한 기록에 대해 제약 조건 설정 가능   
+    - 데이터 무결성을 지키기 위한 제한된 조건      
 
-     제약조건 | 설명
-     ---|:---:|
-     'NOT NULL | 데이터에 NULL을 허용하지 않는다.
-     'UNIQUE' | 중복된 값을 허용하지 않는다.
-     'PRIMARY KEY' | NOT NULL + UNIQUE, 컬럼의 고유식별자로 사용됨.
-     'FOREIGN KEY' | 참조되는 테이블의 컬럼 값이 존재하면 허용한다.
-     'CHECK' | 저장 가능한데이터 값의 범위나 조건을 지정하여 설정한 값만 허용한다.
+   |제약조건 |설명|
+   |:--:|:--:|
+   |'NOT NULL | 데이터에 NULL을 허용하지 않는다.|
+   |'UNIQUE' | 중복된 값을 허용하지 않는다.|
+   |'PRIMARY KEY' | NOT NULL + UNIQUE, 컬럼의 고유식별자로 사용됨.|
+   |'FOREIGN KEY' | 참조되는 테이블의 컬럼 값이 존재하면 허용한다.|
+   |'CHECK' | 저장 가능한데이터 값의 범위나 조건을 지정하여 설정한 값만 허용한다.|
 
+  1. **NOT NULL**  
 
-     1. **NOT NULL**  
-
-         ```
-         CREATE TABLE USER_NOCONS(
-         USER_NO NUMBER NOT NULL
-         );
-         ```     
-       **NOT NULL은 데이터레벨에서는 사용 X**   
-
-
-     2. **UNIQUE**   
-
-       ```
-       CREATE TABLE USER_NO(
-       USER_ID VARCHAR2(20) UNIQUE
-       );
-       ```   
-
-       또는   
-
-       ```
-       CREATE TABLE USER_NO(
-       USER_ID VARCHAR2(20),
-       UNIQUE(USER_ID
-       );
-       ```         
-
-     3. **PRIMARY KEY**   
-
-       ```
-       CREATE TABLE NO(
-         USER_NO NUMBER PRIMARY KEY
-       );
-       ```      
-
-       또는   
-
-       ```
-       CREATE TABLE NO(
-         USER_NO NUMBER
-         PRIMARY KEY(USER_NO)
-       );
-       ```      
-
-     4. __FOREIGN KEY__      
-
-        - 참조 무결성을 유지하기 위한 제약조건
-        - 참조된 다른 테이블이 제공하는 값만 사용할 수 있도록 제한하는 것   
-
-     ```
-     CREATE TABLE NO(
-      USER_NO NUMBER
-      PRIMARY KEY(USER_NO)
-     );
-     ```      
-
-        - 참조하여 테이블 작성   
-
-      ```   
-      CREATE TABLE NO2(
-        PRODOCTOR_NO NUMBER REFERENCSE NO(USER_NO)
-      );
-      ```      
-
-         또는   
-
-      ```
-      CREATE TABLE NO2(
-        PRODOCTOR_NO NUMBER ,
-        FOREIGN KEY (PRODOCTOR_NO) REFERENCSE NO(USER_NO)
-      );
-      ```  
-
-         - **ON DELETE SET NULL과 ON DELETE CASCADE**
-         - 둘 모두 FOREIGN 뒤에 쓰게되면 참조하는 테이블이 삭제가 가능하다.
-         - ON DELETE SET NULL은 참조된 컬럼의 데이터 삭제시 해당 컬럼만 삭제하고 나머지 데이터 유지   
-         - ON DELETE CASCASE는 참조된 컬럼의 데이터 삭제시 데이터 전부 소거
-
-      5. **CHECK**    
+  ```
+  CREATE TABLE USER_NOCONS(
+  USER_NO NUMBER NOT NULL
+  );
+  ```     
+       
+  **NOT NULL은 데이터레벨에서는 사용 X**   
 
 
-         - 해당 컬럼에 입력되거나 수정되는 값을 체크, 설정된 값 이외의 값이면 에러 발생   
+  2. **UNIQUE**   
 
-      ```
-      CREATE TABLE USER(
-        GENDER CHAR(6) CHECK (GENDER IN('남','여','중성'))
-      );
-      ```   
+  ```
+  CREATE TABLE USER_NO(
+  USER_ID VARCHAR2(20) UNIQUE
+  );
+  ```   
 
+  또는   
 
-    **SUBQUERY를 이용해 테이블 작성**   
+  ```
+  CREATE TABLE USER_NO(
+  USER_ID VARCHAR2(20),
+  UNIQUE(USER_ID
+  );
+  ```         
 
-    ```
-    CREATE TABLE EMPLOYEE_COPY
-    AS
-    SELECT EMP_ID,EMP_NAME,DEPT_TITLE,JOB_NAME FROM EMPLOYEE   
-    LEFT JOIN DEPARTMENT ON (DEPT_CODE = DEPT_ID)
-    LEFT JOIN JOB USING(JOB_CODE);
-    ```      
-          
- ## ALTER H2   
- 
-  - DDL의 한 종류로 CREATE로 정의된 내용을 수정할 때 사용
-  - <U>컬럼의 추가 삭제, 제약조건의 추가 삭제, 컬럼의 자료형 변경, 테이블명 컬   럼명 제약조건 이름 변경 등이 가능</U>      
+  3. **PRIMARY KEY**   
+
+  ```
+  CREATE TABLE NO(
+  USER_NO NUMBER PRIMARY KEY
+  );
+  ```      
+
+  또는   
+
+  ```
+  CREATE TABLE NO(
+  USER_NO NUMBER
+  PRIMARY KEY(USER_NO)
+  );
+  ```      
+
+  4. __FOREIGN KEY__      
+
+    - 참조 무결성을 유지하기 위한 제약조건
+    - 참조된 다른 테이블이 제공하는 값만 사용할 수 있도록 제한하는 것   
+
+  ```
+  CREATE TABLE NO(
+  USER_NO NUMBER
+  PRIMARY KEY(USER_NO)
+  );
+  ```      
+
+  참조하여 테이블 작성   
+
+  ```   
+  CREATE TABLE NO2(
+  PRODOCTOR_NO NUMBER REFERENCSE NO(USER_NO)
+  );
+  ```      
+
+  또는   
+
+  ```
+  CREATE TABLE NO2(
+  PRODOCTOR_NO NUMBER ,
+  FOREIGN KEY (PRODOCTOR_NO) REFERENCSE NO(USER_NO)
+  );
+  ```  
+
+    - **ON DELETE SET NULL과 ON DELETE CASCADE**
+    - 둘 모두 FOREIGN 뒤에 쓰게되면 참조하는 테이블이 삭제가 가능하다.
+    - ON DELETE SET NULL은 참조된 컬럼의 데이터 삭제시 해당 컬럼만 삭제하고 나머지 데이터 유지   
+    - ON DELETE CASCASE는 참조된 컬럼의 데이터 삭제시 데이터 전부 소거
+
+  5. **CHECK**  
   
+    - 해당 컬럼에 입력되거나 수정되는 값을 체크, 설정된 값 이외의 값이면 에러 발생   
+
+  ```
+  CREATE TABLE USER(
+  GENDER CHAR(6) CHECK (GENDER IN('남','여','중성'))
+  );
+  ```   
+
+
+  **SUBQUERY를 이용해 테이블 작성**   
+
+  ```
+  CREATE TABLE EMPLOYEE_COPY
+  AS
+  SELECT EMP_ID,EMP_NAME,DEPT_TITLE,JOB_NAME FROM EMPLOYEE   
+  LEFT JOIN DEPARTMENT ON (DEPT_CODE = DEPT_ID)
+  LEFT JOIN JOB USING(JOB_CODE);
+  ```      
+          
+  __ALTER__
+ 
+    - DDL의 한 종류로 CREATE로 정의된 내용을 수정할 때 사용
+    - <U>컬럼의 추가 삭제, 제약조건의 추가 삭제, 컬럼의 자료형 변경, 테이블명 컬   럼명 제약조건 이름 변경 등이 가능</U>      
+
   
   1. **컬럼 추가**   
   
   ```
   ALTER TABLE DEPT_COPY 
   ADD(KNAME VARCHAR2(20));
-  ```      
+  ``` 
+  
+  또는
+  
   ```
   ALTER TABLE DEPT_COPY
   ADD (HNAME VARCHAR2(20) DEFAULT ‘kh’);
   ```     
 
-  2. **컬럼 수정**   
+  2. **컬럼 수정**      
   
-  '''
+  ```
   ALTER TABLE DEPT_COPY  
   MODIFY DEPT_ID CHAR(3)    
   MODIFY DEPT_TITLE VARCHAR2(30)
-  '''   
-    
-    
+  ```   
+   
   3. **제약조건 확인**   
   
-  '''
+  ```
   SELECT UC.CONSTRAINT_NAME, -- 제약조건 이름
   UC.CONSTRAINT_TYPE, -- 제약조건 타입
   UC.TABLE_NAME, -- 테이블이름
@@ -606,27 +603,27 @@ __DDL__
   JOIN USER_CONS_COLUMNS UCC ON (UC.CONSTRAINT_NAME =
   UCC.CONSTRAINT_NAME)
   WHERE UC.TABLE_NAME = ‘DEPT_COPY’; -- 테이블명(반드시 대문자로 기입)
-  '''   
-       
-        
+  ```   
+          
   4. **제약조건 추가**   
   
-  '''
+  ```
   ALTER TABLE DEPT_COPY
   ADD CONSTRAINT DCOPY_ID_PK PRIMARY KEY(DEPT_ID)  --CONSTRAINT:  제약조건
   ADD CONSTRAINT DCOPY_TITLE_UNQ UNIQUE(DEPT_TITLE)
   MODIFY HNAME(컬럼명) CONSTRAINT DCOPY_HNAME_NN(제약이름) NOT NULL;  
-  '''     
+  ```     
  
   **NOT NULL은 은 MODIFY로 로 추가**   
       
         
   5. **컬럼 삭제**   
   
-  '''
+  ```
   ALTER TABLE DEPT_COPY
   DROP COLUMN KN
-  ```  
+  ```
+  
   *하고 있는 경우 컬럼삭제 불가*  
   
     - DROP COLUMN 컬럼명 CASCADE CONSTRAINT를 를 하는 경우 제약조건을 삭제하고 컬럼삭제   
@@ -634,15 +631,15 @@ __DDL__
       
   6. **제약조건 삭제**     
   
-   ```
-   ALTER TABLE DEPT_COPY
-   DROP CONSTRAINT DCOPY_ID_PK
-   DROP CONSTRAINT DCOPY_TITLE_UNQ
-   MODIFY HNAME NULL;
-   ```   
+  ```
+  ALTER TABLE DEPT_COPY
+  DROP CONSTRAINT DCOPY_ID_PK
+  DROP CONSTRAINT DCOPY_TITLE_UNQ
+  MODIFY HNAME NULL;
+  ```   
    
-   - NOT NULL은 은 MODIFY로 로 삭제
-   - 삭제 시 시 제약조건 이름으로 삭제   
+    - NOT NULL은 은 MODIFY로 로 삭제
+    - 삭제 시 시 제약조건 이름으로 삭제   
    
   7. **컬럼 이름 변경**   
      
@@ -668,37 +665,33 @@ __DDL__
   ```   
         
         
- ## DROP H2   
+  __DROP__   
  
-   - DDL의 한 종류로 CREATE로 정의된 객체를 삭제할 때 사용    
+    - DDL의 한 종류로 CREATE로 정의된 객체를 삭제할 때 사용    
+    - 테이블 삭제    
+   
+  ```
+  DROP TABLE ALTER_TEST;
+  ```     
+  
+   - 제약조건으로 다른 테이블에서 참조하고 있다면 삭제 안될 경우 뒤에 cascade constraint를 쓰면 삭제 가능   
+   
+  ```
+  DROP TABLE ALTER_TEST CASCADE CONSTRAINT;
+  ```   
       
-   -테이블 삭제    
-   
- ```
- DROP TABLE ALTER_TEST;
- ```     
-       
-       
-   - 제약조건으로 다른 테이블에서 참조하고 있다면 삭제 안됨   
-   
- ```
- DROP TABLE ALTER_TEST CASCADE CONSTRAINT;
- ```   
-      
-   → 테이블을 삭제 하면서 연결된 제약조건도 모두 삭제   
-   
+   - 테이블을 삭제 하면서 연결된 제약조건도 모두 삭제   
    - 사용자 삭제(관리자 계정으로 접속)     
    
- ```
- DROP USER test01;
- ```   
+  ```
+  DROP USER test01;
+  ```   
       
   - **USER 삭제 시 시 내부의 테이블을 포함한 데이터들이 모두 삭제**   
    
    
- DML
--------   
-
+# DML
+ 
 ## DML(DATA MANIPULATION LANGUAGE) H3   
    - 데이터 조작 언어
    - 테이블에 값을 삽입,수정,삭제 하는 역할
@@ -816,18 +809,6 @@ VALUES(M_TEST02.ID, M_TEST02.NAME);
   
   
   
-  
-
-
-   
-   
-   
-   
-   
-   
-   
-   
-   
  OBJECT  
  ---------   
  
@@ -1029,18 +1010,19 @@ VALUES(M_TEST02.ID, M_TEST02.NAME);
        
  
 
-## TRIGGER   
+# TRIGGER   
    
-   - 데이터베이스가 미리 정해 놓은 조건을 만족하거나 어떠한 동작이 수행되면 자동적으로 <br> 수행되는 행동(TRIGGER: 연쇄반응)
-   - 트리거는 테이블이나 뷰가 INSERT, UPDATE, DELETE 등의 DML문에 의해     데이터가 입력,수정,삭제 될 경우 자동으로 실행  
-   - 실시간으로 처리를 가능하게 해준다.   
+  - 데이터베이스가 미리 정해 놓은 조건을 만족하거나 어떠한 동작이 수행되면 자동적으로 <br> 수행되는 행동(TRIGGER: 연쇄반응)
+  - 트리거는 테이블이나 뷰가 INSERT, UPDATE, DELETE 등의 DML문에 의해 <br> 데이터가 입력,수정,삭제 될 경우 자동으로 실행  
+  - 실시간으로 처리를 가능하게 해준다.   
    
 ```
 CREATE TABLE TRI_MEMBER
 AS
 SELECT EMP_ID,EMP_NAME,SALARY 
 FROM EMPLOYEE WHERE 1=0;
-   
+
+테이블 생성 후 트리거 받을 테이블 생성
    
 CREATE TABLE TRI_DEL_MEMBER(
     EMP_ID NUMBER,
@@ -1066,33 +1048,33 @@ END;
 
 ```   
 
-__Trigger 구성 요소__   
+1. __Trigger 구성 요소__   
 
   1. 트리거 실행 시점 
   
-     - 트리거 실행 시점을 이벤트 전(before)이나 후(after)로 지정   
+    - 트리거 실행 시점을 이벤트 전(before)이나 후(after)로 지정   
      
   2. 트리거 이벤트 
   
-     - 사용자가 어떤 dml(insert,update,delete)문을 실행했을 때 트리거를     발생시킬 것인지를 결정  
+    - 사용자가 어떤 dml(insert,update,delete)문을 실행했을 때 트리거를 발생시킬 것인지를 결정  
      
   3. 몸체   
   
-     - 트리거 동작 로직으로 begin~ end 안에 작성   
+    - 트리거 동작 로직으로 begin~ end 안에 작성   
      
   4. 유형   
   
-     - 행 레벨 트리거: dml에 의해서 여러 개의 행이 변경되면 각행이 변경될 떄마다    트리거를 발생시키는 방법  
-     - 문장 레벨 트리거: DML을 실행하면 트리거가 한번 발생   
-     - **for each row 준장이 정의되어 있으면 행 레벨 트리거, 생략되어 있으면 문장 레벨트리거**    
+    - 행 레벨 트리거: dml에 의해서 여러 개의 행이 변경되면 각행이 변경될 떄마다  트리거를 발생시키는 방법  
+    - 문장 레벨 트리거: DML을 실행하면 트리거가 한번 발생   
+    - **for each row 준장이 정의되어 있으면 행 레벨 트리거, 생략되어 있으면 문장 레벨트리거**    
    
-__TRigger 바인드 변수__   
-   - :new 새로 입력된 데이터(insert,update시 존재)  
-   - :old 기존 데이터  
-     
-   - :new.컬럼명 sql반영 후의 컬럼 데이터  
-   - :old.컬럼명 sql반영 전의 컬럼 데이터
-   - delete 경우 삭제이기때문에 old만 사용가능
+2. __TRigger 바인드 변수__   
+
+  - new 새로 입력된 데이터(insert,update시 존재)  
+  - old 기존 데이터     
+  - new.컬럼명 sql반영 후의 컬럼 데이터  
+  - old.컬럼명 sql반영 전의 컬럼 데이터
+  - delete 경우 삭제이기때문에 old만 사용가능
 
 ```
 INSERT INTO TRI_DEL_MEMBER VALUES(
