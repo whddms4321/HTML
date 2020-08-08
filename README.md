@@ -51,7 +51,7 @@
   - [객체조작](#객체-조작)    
   - [이벤트](#이벤트)    
 	
-[5.JSP/Servlet](#jsp-servlet)
+[8.JSP/Servlet](#jsp-servlet)
   - [웹 개발 환경 구축](#웹-개발-환경-구축)    
   - [JSP Element](#jsp-element)
   - [Servlet](#servlet)    
@@ -66,7 +66,7 @@
   - [jQuery ajax](#jquery-ajax)   
   
   
-[6.UML](#uml)   
+[9.UML](#uml)   
 
 
 </details>
@@ -154,29 +154,31 @@
      
   
 
+---
 
-# 데이터베이스(database)
 
-  1. DataBase 정의
+## 데이터베이스(database)
   
-    - 운영 데이터 : 조직의 목적을 위해 사용되는 데이터
-    - 공용 데이터 : 공동으로 사용되는 데이터
-    - 통합 데이터 : 중복을 최소화하여 중복으로 인한 데이터 불일치 현상 제거
-    - 저장 데이터 : 컴퓨터 저장장치 저장된 데이터
+1. __DataBase 정의__
+
+  - 운영 데이터 : 조직의 목적을 위해 사용되는 데이터
+  - 공용 데이터 : 공동으로 사용되는 데이터
+  - 통합 데이터 : 중복을 최소화하여 중복으로 인한 데이터 불일치 현상 제거
+  - 저장 데이터 : 컴퓨터 저장장치 저장된 데이터
+
+1. __DataBase의 특징__
+
+  - 실시간 접근성 : 사용자가 데이터를 요청하면 실시간으로 결과를 서비스 함.
+  - 계속적인 변화 : 데이터 값은 시간에 따라 항상 바뀐다.
+  - 동시 공유 : 데이터베이스는 서로 다른 업무 또는 여러사용자에게 공유된다.
+  - 내용에 따른 참조 : DB에 저장된 데이터는 데이터의 물리적 위치가 아니라 DB값에 따라 참조됨
     
-  1. DataBase의 특징
-  
-    - 실시간 접근성 : 사용자가 데이터를 요청하면 실시간으로 결과를 서비스 함.
-    - 계속적인 변화 : 데이터 값은 시간에 따라 항상 바뀐다.
-    - 동시 공유 : 데이터베이스는 서로 다른 업무 또는 여러사용자에게 공유된다.
-    - 내용에 따른 참조 : DB에 저장된 데이터는 데이터의 물리적 위치가 아니라 DB값에 따라 참조됨
-    
-  # dbms(database management system)
+  ## dbms(database management system)
   
     - 데이터베이스에서 데이터를 추출,조작,정의,제어 등을 할 수 있게 해주는 DB 전용 관리 프로그램  
     
   1. DBMS의 기능
-  
+
   |기능|설명|
   |:--:|:--:|
   |데이터 추출(Retrieval)|사용자가 조회하는 데이터 혹은 응용프로그램의 데이터를 추출|
@@ -185,93 +187,70 @@
   |데이터제어(Control)|데이터베이스 사용자를 생성하고 모니터링하며 접근을 제어 백업과 회복,동시성 제어 등의 기능을 지원|
   
   1. DBMS 사용 이점
-  
+
   |주요 이점|설명|
   |:--:|:--:|
   |데이터독립화|데이터와 응용 프로그램을 분리시킴으로써 상호 영향 정도를 줄인 수 있다.|
-  |데이터중복 최소화 <br>데이터무결성 보장|중복되는 데이터를 최소화 시키면 데이터 무결성이 손상될 기능성이 줄어든다. <br> 중복되는 데이터를 최소화 시키면서 필요한 저장공간의 낭비를 줄일 수 있다.|
+  |데이터중복 최소화 <br>데이터무결성 보장|중복되는 데이터를 최소화 시키면 데이터 무결성이 손상될 기능성이 줄어든다. <br> 중복되는 데이터를 최소화 시키면서 필요한 저장공간의 낭비를 줄일 수     있다.|
   |데이터 보안 향상|응용프로그램은 DBMS를 통해 DBMS가 허용하는 데이터에만 접근 할 수 있다.<br>권한에 맞게 데이터 접근을 제한하거나 데이터를 암호화 시켜 저장할 수 있다.|
   |관리 편의성 향상|다양한 방법으로 데이터를 백업할 수 있다.<br>장애 발생시 데이터를 복구 할 수 있다.|
   
   1. 주요 DataBase의 의 유형
-  
+
   |데이터 모델|설명|
   |:--:|:--:|
   |계층 데이터 모델|데이터의 관계를 트리구조로 정의하고, 부모 자식형태를 갖는 구조로 데이터 중복 문제가 발생함|
   |네트워크 데이터 모델|계층형 모델의 중복문제를 해결한 구조로 데이터 간의 다양한 관계를 그물처럼 갖는 구조<br>복잡한 구조 때문에 구조 설계 및 변경이 매우 어려움|
-|관계 데이터 모델|행과 열로 구성된 Table간의 관계를 나타내어 데이터를 표현하는 구조로 흔히 DBMS에서 사용하는 구조|
-|객체- 관계 데이터 모델|객체 지향 데이터베이스 모델을 가진 관계형 데이터베이스로 틀 안에 정해진 <br>Table과의 관계였지만 사용자 정의 타입을 지원|
+  |관계 데이터 모델|행과 열로 구성된 Table간의 관계를 나타내어 데이터를 표현하는 구조로 흔히 DBMS에서 사용하는 구조|
+  |객체- 관계 데이터 모델|객체 지향 데이터베이스 모델을 가진 관계형 데이터베이스로 틀 안에 정해진 <br>Table과의 관계였지만 사용자 정의 타입을 지원|
 
- 1. 객체- 관계형 데이터베이스 특징
- 
-   1. 사용자 정의 타입을 지원한다.
-   사용자가 임의로 정한 데이터 유형을 말하며, 기본형 데이터 타입을 뛰어 넘어 다양한 형태의 데이터를 다룰 수 있다.
-   2. 참조(reference) 타입을 지원한다.
-   객체들로 이루어진 객체 테이블의 경우, 하나의 레코드가 다른 레코드를 참조할 수 있는 것을 말한다.
-   3. 중첩 테이블을 지원한다.
-   테이블을 구성하는 로우(ROW) 자체가 또다른 테이블로 구성되는 테이블을 지원하여 조금 더 복합적인 정보표현이 가능하다.
-   4. 대단위 객체의 저장, 추출이 가능하다.
-   이미지, 오디오, 비디오 등을 저장하기 위한 객체를 지원한다.
-   5. 객체간 상속관계를 지원한다.
-   오라클의 경우 Object타입을 지원함으로써 상속기능을 구현하고 있다.
+1. 객체- 관계형 데이터베이스 특징
+
+ 1. 사용자 정의 타입을 지원한다. <br> 사용자가 임의로 정한 데이터 유형을 말하며, 기본형 데이터 타입을 뛰어 넘어 다양한 형태의 데이터를 다룰 수 있다.
+ 2. 참조(reference) 타입을 지원한다. <br> 객체들로 이루어진 객체 테이블의 경우, 하나의 레코드가 다른 레코드를 참조할 수 있는 것을 말한다.
+ 3. 중첩 테이블을 지원한다. <br>  테이블을 구성하는 로우(ROW) 자체가 또다른 테이블로 구성되는 테이블을 지원하여 조금 더 복합적인 정보표현이 가능하다.
+ 4. 대단위 객체의 저장, 추출이 가능하다. <br> 이미지, 오디오, 비디오 등을 저장하기 위한 객체를 지원한다.
+ 5. 객체간 상속관계를 지원한다. <br>  오라클의 경우 Object타입을 지원함으로써 상속기능을 구현하고 있다.
 
   
-# sql
+## sql
 
 __SQL(Structured Query Language)__
 
   - 관계형 데이터베이스에서 데이터를 조회하거나 조작하기 위해 사용하는 표준검색언어 
   - 원하는 데이터를 찾는 방법이나 절차를 기술하는 것이 아닌 조건을 기술하여 작성
-  
-  
-SQL 문법 종류
-분류 용도 명령어
-DDL
-(Data Definition Language)
-데이터 정의
-CREATE
-DROP
-ALTER
-TRUNCATE
-DML
-(Data Manipulation Language)
-데이터 조회(DQL) SELECT
-데이터 조작
-INSERT
-UPDATE
-DELETE
-DCL
-(Data Control Language)
-권한 설정
-GRANT
-REVOKE
-TCL
-(Transaction Control Language)
-트랜잭션 제어
-COMMIT
-ROLLBACK
-SAVEPOINT
-  
-# ddl
+
+
+1. __SQL 문법 종류__
+
+|분류|용도|명령어|
+|DDL(Data Definition Language)|데이터 정의|CREATE<br>DROP<br>ALTER<br>TRUNCATE|
+|DML(Data Manipulation Language)|데이터 조회(DQL)=SELECT <br> 데이터 조작||INSERT<br>UPDATE<br>DELETE<br>|
+|DCL(Data Control Language)|권한 설정|GRANT<br>REVOKE|
+|TCL(Transaction Control Language)|트랜잭션 제어|COMMIT<br>ROLLBACK<br>SAVEPOINT|
+
+__DDL__
 
   - 데이터 정의 언어
   - 객체를 만들고, 수정하고 삭제하는 구문,
   - CREATE(생성), ALTER(수정),DROP(삭제)
 
 
-# 집합연산자(set operator)
+2. __집합연산자(set operator)__
 
-   - 두개 이상의 테이블에서 조인을 사용하지 않고, 연관된 데이터를 조회하는 방법
-   - 여러 개의 결과를 하나로 결합하는 방식
-   - 집합연산자는 ROW를 추가하여 데이터를 표현    
-   
-  1. 집합 연산자의 성립 조건   
+  - 두개 이상의 테이블에서 조인을 사용하지 않고, 연관된 데이터를 조회하는 방법
+  - 여러 개의 결과를 하나로 결합하는 방식
+  - 집합연산자는 ROW를 추가하여 데이터를 표현    
+
+  __집합 연산자의 성립 조건__
 
     - SELECT 절의 컬럼수가 동일해야하고
     - SELECT 절의 동일위치에 존재하는 컬럼 데이터가 상호 호환 가능해야함.
-   
-    * 두 개 쿼리문을 각 집합연산자를 이용해 처리
 
+  __두 개 쿼리문을 각 집합연산자를 이용해 처리__
+  
+  예시 
+  
   ```
   SELECT EMP_ID,EMP_NAME,
   DEPT_CODE, SALARY FROM
@@ -284,89 +263,90 @@ SAVEPOINT
   WHERE SALARY > 3000000;
   ```
     
- 1. UNION(중복된 영역 제외하고 합)
- 
- ```
- SELECT EMP_ID,EMP_NAME,
- DEPT_CODE, SALARY FROM
- EMPLOYEE
- WHERE DEPT_CODE = 'D5'
- UNION
- SELECT
- EMP_ID,EMP_NAME,DEPT_CODE,
- SALARY FROM EMPLOYEE
- WHERE SALARY > 3000000;   
- ```   
+  1. UNION(중복된 영역 제외하고 합)
+
+  ```
+  SELECT EMP_ID,EMP_NAME,
+  DEPT_CODE, SALARY FROM
+  EMPLOYEE
+  WHERE DEPT_CODE = 'D5'
+  UNION
+  SELECT
+  EMP_ID,EMP_NAME,DEPT_CODE,
+  SALARY FROM EMPLOYEE
+  WHERE SALARY > 3000000;   
+  ```   
    
-   - __중복데이터는 1 개만출력__
-   - __EMP_ID로 로 오름 차순 정렬__   
+    - 중복데이터는 1 개만출력
+    - EMP_ID로 로 오름 차순 정렬_  
       
-   2. UNION ALL(중복데이터도 포함해 합)   
+  2. UNION ALL(중복데이터도 포함해 합)   
       
-   ```
-   SELECT EMP_ID,EMP_NAME,
-   DEPT_CODE, SALARY FROM
-   EMPLOYEE
-   WHERE DEPT_CODE = 'D5'
-   UNION ALL
-   SELECT
-   EMP_ID,EMP_NAME,DEPT_CODE,
-   SALARY FROM EMPLOYEE
-   WHERE SALARY > 3000000;
-   ```   
+  ```
+  SELECT EMP_ID,EMP_NAME,
+  DEPT_CODE, SALARY FROM
+  EMPLOYEE
+  WHERE DEPT_CODE = 'D5'
+  UNION ALL
+  SELECT
+  EMP_ID,EMP_NAME,DEPT_CODE,
+  SALARY FROM EMPLOYEE
+  WHERE SALARY > 3000000;
+  ```   
    
-   - __중복데이터를 모두 출력__   
+    - 중복데이터를 모두 출력
       
       
-   3. INTERSECT(합집합)     
+  3. INTERSECT(합집합)     
+
+  ```
+  SELECT EMP_ID,EMP_NAME,
+  DEPT_CODE, SALARY FROM
+  EMPLOYEE
+  WHERE DEPT_CODE = 'D5’
+  INTERSECT
+  SELECT
+  EMP_ID,EMP_NAME,DEPT_CODE,
+  SALARY FROM EMPLOYEE
+  WHERE SALARY > 3000000;
+  ```    
+    - 중복데이터만 출력(교집합) 
+   
       
-   ```
-   SELECT EMP_ID,EMP_NAME,
-   DEPT_CODE, SALARY FROM
-   EMPLOYEE
-   WHERE DEPT_CODE = 'D5’
-   INTERSECT
-   SELECT
-   EMP_ID,EMP_NAME,DEPT_CODE,
-   SALARY FROM EMPLOYEE
-   WHERE SALARY > 3000000;
-   ```   
+  4. MINUS(차집합)     
+   
+  ```
+  SELECT EMP_ID,EMP_NAME,
+  DEPT_CODE, SALARY FROM
+  EMPLOYEE
+  WHERE DEPT_CODE = 'D5’
+  MINUS
+  SELECT
+  EMP_ID,EMP_NAME,DEPT_CODE,
+  SALARY FROM EMPLOYEE
+  WHERE SALARY > 3000000;
+  ```   
   
-      
-   - __중복데이터만 출력(교집합)__   
-   
-      
-   4. MINUS(차집합)     
-   
-   ```
-   SELECT EMP_ID,EMP_NAME,
-   DEPT_CODE, SALARY FROM
-   EMPLOYEE
-   WHERE DEPT_CODE = 'D5’
-   MINUS
-   SELECT
-   EMP_ID,EMP_NAME,DEPT_CODE,
-   SALARY FROM EMPLOYEE
-   WHERE SALARY > 3000000;
-   ```   
-   
-   - __첫번째 SELECT 문에서 중복데이터 제외하고 출력__   
+    - 첫번째 SELECT 문에서 중복데이터 제외하고 출력
    
    
-## SUBQUERY    
+3. subquery
+
    - 하나의 SELECT 문장 안에 포함된 또 하나의 SELECT 문장
    - 서브쿼리는 메인쿼리 실행 전 한번만 실행   
    
    *서브쿼리조건*   
       
-      1. 서브쿼리는 반드시 소괄호..
-      2. 서브쿼리는 연산자의 오른쪽에 위치
-      3. 서브쿼리 내에서 ORDER BY 문법은 지원 X(예외O)
-      4. 서브쿼리와 비교할 항목은 서브쿼리의 SELECT한 학목의 개수와    자료형이 일치해야함.
+     1. 서브쿼리는 반드시 소괄호..
+     2. 서브쿼리는 연산자의 오른쪽에 위치
+     3. 서브쿼리 내에서 ORDER BY 문법은 지원 X(예외O)
+     4. 서브쿼리와 비교할 항목은 서브쿼리의 SELECT한 학목의 개수와 자료형이 일치해야함.
       
 
- - SUBQUERY 유형   
-   1. 단일행 SUBQUERY : 서브쿼리 조회값 개수가 1개인 경우     
+  __SUBQUERY 유형__
+ 
+   1. __단일행 SUBQUERY : 서브쿼리 조회값 개수가 1개인 경우__
+   
    ```
    SELECT EMP_ID,
    EMP_NAME,
@@ -379,7 +359,8 @@ SAVEPOINT
    FROM EMPLOYEE);
    ```   
    
-   2. 다중행 서브쿼리 : 서브쿼리의 조회값 개수가 행이 여러개인 경우    
+   2. __다중행 서브쿼리 : 서브쿼리의 조회값 개수가 행이 여러개인 경우__
+   
    ```
    SELECT EMP_ID,
    EMP_NAME,
@@ -392,23 +373,28 @@ SAVEPOINT
    FROM EMPLOYEE
    GROUP BY DEPT_CODE);
    ```   
+   
    ANY : 서브 쿼리의 결과 중에서 하나라도 참이면 참   
-      - > ANY : 최소값 보다 크면 / => ANY : 최소값 보다 크거나 같으면  
-      - < ANY : 최대값 보다 크면 / <= ANY : 최대값 보다 작거나 같으면  
-      - = ANY : IN 과 과 같은 효과 / != ANY : NOT IN과 과 같은 효과   
+    - > ANY : 최소값 보다 크면 / => ANY : 최소값 보다 크거나 같으면  
+    - < ANY : 최대값 보다 크면 / <= ANY : 최대값 보다 작거나 같으면  
+    - = ANY : IN 과 과 같은 효과 / != ANY : NOT IN과 과 같은 효과 
+      
    ```   
    SELECT EMP_ID, EMP_NAME, DEPT_CODE, SALARY
    FROM EMPLOYEE WHERE SALARY > ANY(2000000, 5000000);
-   ```   
+   ``` 
+   
    ALL : 서브 쿼리의 결과가 모두 참이면 참  
-      - > ALL : 최대값 보다 크면 / => ALL : 최대값 보다 크거나 같으면  
-      - < ALL : 최소값 보다 크면 / <= ALL : 최소값 보다 작거나 같으면  
+    - > ALL : 최대값 보다 크면 / => ALL : 최대값 보다 크거나 같으면  
+    - < ALL : 최소값 보다 크면 / <= ALL : 최소값 보다 작거나 같으면  
+      
    ```   
    SELECT EMP_ID, EMP_NAME, DEPT_CODE, SALARY
    FROM EMPLOYEE WHERE SALARY > ALL(2000000, 5000000);
    ```   
    
    3. 다중열 서브쿼리 : 서브쿼리의 조회값 개수가 컬럼이 여러 개인 경우    
+   
    ```
    SELECT EMP_NAME,
    JOB_CODE,
@@ -422,10 +408,9 @@ SAVEPOINT
    FROM EMPLOYEE WHERE SUBSTR(EMP_NO,8,1)=2 AND ENT_YN = ‘Y’);
    ```   
    
-   4. 다중행 다중열 서브쿼리 : 서브쿼리 조회값 행,컬럼수가 여러개인 경우    
+   4. 다중행 다중열 서브쿼리 : 서브쿼리 조회값 행,컬럼수가 여러개인 경우       
    5. 상관 서브쿼리(상호연관) : 메인 쿼리가 바뀔때, 서브쿼리 결과값도 바뀌는 경우   
-   
-   5. 스칼라 서브쿼리 : 상관커리이면서 결과값이 1개인 경우   
+   6. 스칼라 서브쿼리 : 상관커리이면서 결과값이 1개인 경우      
    
    
       
@@ -1112,11 +1097,11 @@ INSERT INTO TRI_DEL_MEMBER VALUES(
 ---
 
   
-## jdbc
+# jdbc h2
 
 -----    
     
-## OJDBC H2    
+# ojdbc H2    
 
   - 오라클에서 제공하는 오라클 DBMS와 자바를 연결하기 위한 라이브러리
   - 자바 11버전에서는 OJDBC 6을 사용
@@ -1127,30 +1112,34 @@ INSERT INTO TRI_DEL_MEMBER VALUES(
       - general(workspace,editor의spelling) 2 json(jason file) 1개 web(jsp,css,html) 3개   
 
 
-- **jdbc의 종류**   
+ __jdbc의 종류** __
 
-  1. **dirvermanager**   
+  1. __dirvermanager__   
   
      - 데이터 원본에 jdbc 드라이버를 통하여 커넥션을 만드는 역할
      - class.forname() 메소드를 통해 생성되며, 반드시 예외처리 해야함
      - 직접 객체 생성이 불가능하고,getconnection()메소드    
 
-  2. **Connection**   
+  2. __Connection__    
+
      - 특정 데이터 원본과 연결된 커넥션   
      - Statement 객체를 생성할 때도 Connection 객체를 이용해야 함   
      - SQL 문장을 실행시키기 전 우선 Connection 객체를 필요    
 
   3. **Statement**    
+  
      - Cnnection 객체에 의해 프로그램에 리턴 되는 객체에 의해 구현되는 일종의 메소드 집합    쉽게 말해 connectino이 연결되는데 사용되는 매개체  
      - Connection 클래스의 createStatement() 메소드를 호출하여 객체 생성
      - Statement 객체로 SQL문을 String 객체에 담아 인자로 전달하여 질의를 수행    
 
   4. **PreparedStatement**    
+  
      - Statement클래스를 상속하여 만들어진 클래스로 기본적인 수행역할은 동일
      - SQL 문장이 미리 컴파일 되고, 실행시간 동안 인수 값을 위한 공간을 확보        할 수 있다는 점에서 Statement 와 다름
      - Connection 클래스의 preparedStatement() 메소드를 호출하여 객체 생성    
 
-        - Statement와 PreparedStatement의 차이점   
+        - Statement와 PreparedStatement의 차이점
+        
           - statement는 캐시 사용x     
           ```
           select * from member where member_id='입력값'
@@ -1158,6 +1147,7 @@ INSERT INTO TRI_DEL_MEMBER VALUES(
           ```    
 
           - P.Statement는 캐시 사용
+          
           ```
           select * from member where member_id=?
           user01,user02 : user02부턴 select문을 캐시에 저장해 입력문만 받아서 사용,     
@@ -1169,7 +1159,7 @@ INSERT INTO TRI_DEL_MEMBER VALUES(
      - SELECT문을 사용한 질의 성공 시 반환되는 객체
      - ResultSet은 SQL 질의에 의해 생성된 결과를 담고 있으며 '커서(cursor)'를       이용하여 특정 행에 대한 참조를 조작       
         
-- **jdbc의 작성 절차**   
+ **jdbc의 작성 절차**   
 
    1. 드라이버 등록
    2. Connection객체생성
@@ -1178,19 +1168,23 @@ INSERT INTO TRI_DEL_MEMBER VALUES(
    5. 결과 처리
    6. 자원 반환    
 
-- **single ton(싱글톤) 패턴**  
-  - 싱글톤은 클래스에 대한 객체가 프로그램 구동 내내 한개만 작성되어 사용되게     하는 디자인 패턴을 의미한다.   
+ **single ton(싱글톤) 패턴**  
+ 
+  - 싱글톤은 클래스에 대한 객체가 프로그램 구동 내내 한개만 작성되어 사용되게 하는 디자인 패턴을 의미한다.   
   - 코드는 동일하며 프로그램 시작 후, 1번만 선언한 뒤 계속 불러다 사용.   
   - 이때 만들어진 객체를 불러다 쓰기위해 **Static** 형태를 사용한다.
+  
   ```
   public static Connection getConnection() {
   }
   ```   
+  
   - Connection 객체 생성, commit과 rollback 등을 위해 해당 패턴을 사용 한다.   
   - Member m = new Member();선언과 다른 이유는 Member객체는 필요할 때마다    만들어 쓰는 반면 싱글톤 패턴은 하나를 선언하고 계속 불러사용하기 떄문이다.   
 
-- **MVC**    
+ **MVC**    
    - model - 데이터 형태(vo -Member.java)
+      - service : service
       - vo : value object
       - dao : data access object    	  
    - View  - 사용자 화면
@@ -1213,7 +1207,7 @@ INSERT INTO TRI_DEL_MEMBER VALUES(
 
 --- 3/16일자
 
-## 데이터딕셔너리 H2   
+# 데이터딕셔너리 H2   
 
    - 자원을 효율적으로 관리하기 위한 다양한 정보를 저장하는 시스템 테이블   
    - 사용자가 테이블을 생성하거나, 사용자변경등의 작업을 할 때 데이터베이스        서버에 의해 자동으로 갱신되는 테이블     
@@ -1225,7 +1219,8 @@ INSERT INTO TRI_DEL_MEMBER VALUES(
    2. ALL_XXXXX      
       - 자신의 계정이 소유하거나 권한을 부여받은 객체 등에 관한 정보 조회
    3. USER_XXXXX     
-      - 자신의 계정이 소유한 객체 등에 관한 정보 조회     
+      - 자신의 계정이 소유한 객체 등에 관한 정보 조회   
+      
       1. USER_의 종류들   
       
          - SELECT * FROM USER_TABLES;   
