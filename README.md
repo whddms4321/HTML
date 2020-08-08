@@ -14,8 +14,9 @@
   - [DDL](#ddl)   
   - [집합연산자](#집합연산자(set operator))   
   
-[3.JDBC](#jdbc)  
-  - 
+[3.JDBC](#jdbc)
+
+
 [4.HTML](#html)   
   - [META](#meta)     
   - [SCRIPT](#script)        
@@ -1111,7 +1112,7 @@ INSERT INTO TRI_DEL_MEMBER VALUES(
 ---
 
   
-# jdbc
+## jdbc
 
 -----    
     
